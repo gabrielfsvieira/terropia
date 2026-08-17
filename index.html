@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terrópia — v00187</title>
+<title>Terrópia — v00188</title>
 <meta name="theme-color" content="#10161d">
 <meta name="application-name" content="Terrópia">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -2722,8 +2722,8 @@ body.access-state-patterns #gameWrap .side-tabs .panel-icon-btn.selected::after{
 
 </style>
 
-<style data-source="css/v00187.css">
-/* v00187 — release unificada jogo + World Editor */
+<style data-source="css/v00188.css">
+/* v00188 — release unificada jogo + World Editor */
 /* v00182 — aplicação das edições do World Editor; gameplay e layout preservados */
 
 </style>
@@ -3400,7 +3400,7 @@ window.CRPG = window.CRPG || { data:{}, systems:{}, world:{}, ui:{}, core:{} };
 </script>
 <script data-source="data/tiers.js">
 window.CRPG = window.CRPG || { data:{} };
-// v00187 — 8 tiers regionais oficiais. IDs internos legados são preservados para compatibilidade de saves/receitas.
+// v00188 — 8 tiers regionais oficiais. IDs internos legados são preservados para compatibilidade de saves/receitas.
 CRPG.data.tiers = Object.freeze({
   iron:     {rank:1,name:'Cobre',     miningLevel:1,  smithingLevel:1,  combatLevel:1,  color:'#8b5a3c', region:'Atenaria'},
   mithril:  {rank:2,name:'Ferro',     miningLevel:5,  smithingLevel:5,  combatLevel:5,  color:'#4b5056', region:'Mornaqua'},
@@ -3782,7 +3782,7 @@ CRPG.data.arrowCraftRecipes = Object.freeze({
 </script>
 <script data-source="data/fish.js">
 window.CRPG = window.CRPG || { data:{} };
-// v00187 — fauna de pesca oficial por região/tier.
+// v00188 — fauna de pesca oficial por região/tier.
 CRPG.data.fishTiers = Object.freeze({
   1:{tier:1,name:'Lambari',region:'Atenaria',waterTier:1,fishingLevel:1,cookingLevel:1,minSeconds:3,maxSeconds:7,cookSeconds:2,heal:12,xp:5,cookingXp:5,value:4,rarity:'comum'},
   2:{tier:2,name:'Atum',region:'Mornaqua',waterTier:2,fishingLevel:5,cookingLevel:5,minSeconds:5,maxSeconds:9,cookSeconds:3,heal:18,xp:8,cookingXp:8,value:7,rarity:'comum'},
@@ -13171,7 +13171,7 @@ if(m.area!==state.area||!state.treasureMaps?.spawned?.[type]||state.treasureMaps
     log(`⛏️ Você minerou <b>${def.name}</b>: +${oreQty} minério(s) e <b>${miningXp} XP de Mineração</b>.`);
     notice(`+${oreQty} ${def.name}`);if(doubled)doubleYieldFeedback(def.itemType,'Mineração',(node.x+1)*TILE,(node.y+1)*TILE);if(perfect){perfectActionFeedback('Mineração',(node.x+1)*TILE,(node.y+1)*TILE,'+1 minério e XP bônus');if(hasPerk('mining','perfectMomentum'))grantPerkMomentum('mining')}
 
-    // v00187 — cada minério tem sua gema regional correspondente. Uma gema no máximo por ação.
+    // v00188 — cada minério tem sua gema regional correspondente. Uma gema no máximo por ação.
     const regionalGem=GEM_BY_MATERIAL[node.type],gemRecipe=regionalGem&&GEM_CUT_RECIPES[regionalGem];
     if(regionalGem&&gemRecipe){
       const tier=RESOURCE_TIERS[node.type]?.rank||1,baseChance=Math.max(.01,.075-(tier-1)*.0075),bonus=activeFoodBuff('rare')+(hasPerk('mining','gemDiscovery')?.015:0)+MASTERY2.value('mining',masteryLevel('mining',def.itemType),'special');
@@ -14685,7 +14685,7 @@ if(m.area!==state.area||!state.treasureMaps?.spawned?.[type]||state.treasureMaps
    const keys=await caches.keys();
    await Promise.all(keys.map(k=>caches.delete(k)));
  }
-}catch(e){console.warn('[V00187] cache cleanup',e)}})();
+}catch(e){console.warn('[V00188] cache cleanup',e)}})();
 </script>
 </body>
 </html>

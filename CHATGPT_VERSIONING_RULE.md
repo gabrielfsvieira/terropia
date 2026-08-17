@@ -15,13 +15,20 @@ Esta regra é **obrigatória para toda edição futura feita pelo ChatGPT no pro
 
 
 ## Regra de nome do arquivo a partir da V00184
-O ZIP devolvido deve se chamar somente pela versão, no formato `V00185.zip`, `V00187.zip`, etc. Não prefixar com TERROPIA nem adicionar descrições ao nome do ZIP.
+O ZIP devolvido deve se chamar somente pela versão, no formato `V00185.zip`, `V00188.zip`, etc. Não prefixar com TERROPIA nem adicionar descrições ao nome do ZIP.
 
 
-## Regra de repositório unificado — V00187+
+## Regra de repositório unificado — V00188+
 - A entrega oficial deve conter o projeto inteiro: jogo + World Editor + dados + testes + documentação.
 - O ZIP final deve ser somente `VNNNNN.zip`.
 - A raiz do repositório GitHub Pages abre o jogo (`/terropia/`).
 - O World Editor canônico fica em `/terropia/editor/`.
 - Nunca entregar o World Editor como pacote separado quando a solicitação envolver o projeto completo.
 - Alterações feitas pelo World Editor devem ser reconciliadas no mesmo projeto antes da próxima release.
+
+
+## Editor canônico
+- Leia `WORLD_EDITOR_CURRENT.json` primeiro.
+- A versão em `canonicalEditor` é a única runtime oficial.
+- Runtimes antigos devem ser removidos antes de qualquer ZIP de entrega.
+- O editor mais recente sempre prevalece.

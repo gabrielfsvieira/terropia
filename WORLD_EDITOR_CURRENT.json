@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "projectVersion": "V00188",
+  "editorVersion": "V00188",
+  "canonicalEditor": "editor.html",
+  "canonicalAliases": [
+    "editor/index.html",
+    "world-editor.html"
+  ],
+  "storageKey": "terropia-world-editor-v1",
+  "exportPolicy": {
+    "singleCanonicalEditor": true,
+    "latestEditorAlwaysWins": true,
+    "removePreviousEditorRuntimeCopies": true,
+    "removePreviousChatGPTEditorPackages": true
+  }
+}

@@ -11,5 +11,5 @@ Sempre que uma nova versão alterar regiões, tiers, telas, códigos AT, conexõ
 Não publicar uma versão de World Map sem a planilha sincronizada.
 
 
-## V00187 — matriz regional obrigatória
-Use `REGIONAL_RESOURCES_V00187.md` como fonte autoritativa para os 8 tiers de minério, gema, árvore e peixe.
+## V00188 — matriz regional obrigatória
+Use `REGIONAL_RESOURCES_V00188.md` como fonte autoritativa para os 8 tiers de minério, gema, árvore e peixe.
