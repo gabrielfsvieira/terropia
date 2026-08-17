@@ -1,0 +1,6251 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#0b1118"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Terrópia"><title>Terrópia — World Editor Mobile</title><style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}:root{--bg:#0b1118;--panel:#121b25;--panel2:#182431;--panel3:#0e1720;--line:#2b3b4c;--text:#f2f6fa;--muted:#91a3b5;--accent:#78e2ad;--accent2:#b8f3d3;--warn:#f1c75b;--danger:#ff8e8e;--cell:48px;--gap:11px;--A:#76b95a;--L:#8ca6bf;--M:#4aa6bd;--I:#b9d8e8;--C:#3c9b69;--S:#d6ad58;--B:#bf654d;--N:#9275a9}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif;-webkit-text-size-adjust:100%;overscroll-behavior:none}body{padding-bottom:calc(48px + env(safe-area-inset-bottom))}button,input,select,textarea{font:inherit}button{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:14px;min-height:46px;padding:0 14px;font-weight:750;touch-action:manipulation}button:active{transform:scale(.98)}button.primary{background:var(--accent);border-color:var(--accent);color:#082016}button.ghost{background:transparent}button.icon{width:46px;padding:0;display:grid;place-items:center;font-size:19px}.apphead{position:sticky;top:0;z-index:20;background:rgba(11,17,24,.92);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid #243342;padding:max(8px,env(safe-area-inset-top)) 12px 9px}.headrow{display:flex;align-items:center;gap:9px;min-height:46px}.brand{flex:1;min-width:0}.brand b{display:block;font-size:18px;letter-spacing:-.2px}.brand small{display:block;color:var(--muted);font-size:12px;margin-top:1px}.statuspill{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:7px 10px;color:var(--muted);font-size:12px;font-weight:750;white-space:nowrap}.statuspill.changed{color:#0b261b;background:var(--accent);border-color:var(--accent)}.searchrow{display:flex;gap:8px;margin-top:7px}.searchbox{position:relative;flex:1}.searchbox input{width:100%;height:46px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:0 42px 0 40px;outline:none}.searchbox:before{content:'⌕';position:absolute;left:14px;top:9px;font-size:22px;color:var(--muted)}.searchbox .clear{position:absolute;right:5px;top:5px;border:0;background:transparent;width:36px;min-height:36px;padding:0;color:var(--muted);display:none}.searchbox.has .clear{display:block}.filters{display:flex;gap:7px;overflow:auto;padding:9px 12px 4px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}.chip{min-height:36px;height:36px;border-radius:999px;white-space:nowrap;padding:0 13px;background:var(--panel);font-size:13px;color:var(--muted)}.chip.active{background:var(--accent);border-color:var(--accent);color:#092016}.mapcard{margin:5px 10px 10px;border:1px solid var(--line);background:var(--panel3);border-radius:20px;overflow:hidden;box-shadow:0 10px 30px #0003}.mapbar{display:flex;align-items:center;gap:7px;padding:9px 10px;border-bottom:1px solid var(--line)}.mapbar .info{flex:1;min-width:0}.mapbar strong{display:block;font-size:14px}.mapbar small{color:var(--muted);font-size:11px}.zoomgroup{display:flex;gap:5px}.zoomgroup button{min-height:38px;height:38px;width:38px;padding:0;border-radius:11px;font-size:18px}.mapwrap{overflow:auto;max-height:calc(100dvh - 218px);min-height:430px;padding:0;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background-image:radial-gradient(#ffffff0b 1px,transparent 1px);background-size:18px 18px;touch-action:pan-x pan-y;cursor:grab}.mapwrap.dragging{cursor:grabbing}.mapwrap.dragging .cell,.mapwrap.dragging .slot{pointer-events:none}.mapwrap .cell,.mapwrap .slot{touch-action:pan-x pan-y!important;-webkit-user-select:none;user-select:none}.grid{display:grid;grid-template-columns:repeat(var(--grid-cols,30),var(--cell));grid-template-rows:repeat(var(--grid-rows,31),var(--cell));gap:var(--gap);width:max-content;min-width:max-content;min-height:max-content;padding:var(--grid-breath,96px);touch-action:pan-x pan-y;transform-origin:0 0}.cell{width:var(--cell);height:var(--cell);min-height:0;border-radius:11px;border:1px solid #385065;background:#16212c;color:#fff;padding:3px;font-size:9px;line-height:1.04;font-weight:850;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}.cell .code{font-size:10px;letter-spacing:.2px}.cell .cname{display:none;margin-top:2px;max-width:100%;font-size:7px;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.grid.names .cname{display:block}.cell .dot{position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--warn);box-shadow:0 0 0 2px #15202a}.cell.sel{outline:3px solid var(--accent);outline-offset:2px}.slot{width:var(--cell);height:var(--cell);min-height:0;border-radius:11px;border:1px dashed #3b5367;background:#13202a66;color:#6f879a;padding:0;display:grid;place-items:center;font-size:17px;font-weight:650;opacity:.56}.slot:active{opacity:1;background:#183143}.slot span{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid currentColor;line-height:1}.grid.names .slot{opacity:.7}.cell[data-r=A]{background:color-mix(in srgb,var(--A) 45%,#15202a)}.cell[data-r=L]{background:color-mix(in srgb,var(--L) 45%,#15202a)}.cell[data-r=M]{background:color-mix(in srgb,var(--M) 45%,#15202a)}.cell[data-r=I]{background:color-mix(in srgb,var(--I) 45%,#15202a)}.cell[data-r=C]{background:color-mix(in srgb,var(--C) 45%,#15202a)}.cell[data-r=S]{background:color-mix(in srgb,var(--S) 45%,#15202a)}.cell[data-r=B]{background:color-mix(in srgb,var(--B) 45%,#15202a)}.cell[data-r=N]{background:color-mix(in srgb,var(--N) 45%,#15202a)}.emptyMap{grid-column:1/-1;grid-row:1/-1;display:grid;place-items:center;color:var(--muted);text-align:center;padding:30px}.bottomnav{position:fixed;z-index:25;left:18px;right:18px;bottom:max(5px,env(safe-area-inset-bottom));height:42px;background:rgba(20,29,39,.95);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid #334455;border-radius:15px;display:grid;grid-template-columns:1fr 1fr 1fr;box-shadow:0 12px 45px #0009;overflow:hidden}.navbtn{border:0;background:transparent;border-radius:0;min-height:40px;padding:2px 5px;color:var(--muted);font-size:10px;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:5px}.navbtn span{font-size:15px;line-height:1}.navbtn.active{color:var(--accent2);background:#ffffff08}.badge{position:absolute;transform:translate(14px,-10px);background:var(--warn);color:#211800;border-radius:99px;font-size:9px;padding:2px 5px;font-weight:900}.sheet{position:fixed;inset:auto 0 0;z-index:40;background:var(--panel);border-top:1px solid var(--line);border-radius:24px 24px 0 0;box-shadow:0 -20px 70px #000c;max-height:92dvh;transform:translateY(105%);transition:.24s transform cubic-bezier(.2,.8,.2,1);padding-bottom:max(10px,env(safe-area-inset-bottom))}.sheet.open{transform:none}.handle{width:44px;height:5px;background:#55687b;border-radius:9px;margin:8px auto}.sheethead{display:flex;align-items:center;gap:8px;padding:3px 12px 10px;border-bottom:1px solid var(--line)}.sheettitle{flex:1;min-width:0}.sheettitle b,.sheettitle small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sheettitle b{font-size:17px}.sheettitle small{color:var(--muted);margin-top:2px}.dirty{display:none;width:9px;height:9px;border-radius:50%;background:var(--warn)}.dirty.on{display:block}.close{width:44px;padding:0}.tabs{display:flex;gap:6px;padding:10px 12px 0;overflow:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tabs button{min-height:39px;height:39px;padding:0 13px;white-space:nowrap;font-size:13px;border-radius:999px}.tabs button.active{background:var(--accent);color:#092016;border-color:var(--accent)}.form{overflow:auto;max-height:calc(92dvh - 154px);padding:12px 12px 2px}.pane{display:none}.pane.active{display:block}.field{margin-bottom:13px}.field label{display:flex;justify-content:space-between;font-weight:780;margin-bottom:6px}.field label small{font-weight:500;color:var(--muted)}input,select,textarea{width:100%;border:1px solid var(--line);background:#0d1620;color:var(--text);border-radius:13px;padding:11px 12px;min-height:46px;outline:none}input:focus,select:focus,textarea:focus{border-color:#5e8f7a;box-shadow:0 0 0 3px #78e2ad18}textarea{min-height:120px;resize:vertical;line-height:1.45}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.help{font-size:12px;color:var(--muted);line-height:1.45;margin:-3px 0 13px}.quickstats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:13px}.qstat{background:#0e1720;border:1px solid var(--line);border-radius:13px;text-align:center;padding:8px 3px}.qstat b{display:block;font-size:16px}.qstat small{display:block;color:var(--muted);font-size:9px;margin-top:2px}.savebar{position:sticky;bottom:-2px;background:linear-gradient(transparent,var(--panel) 20%);padding:24px 0 8px;display:grid;grid-template-columns:.8fr 1.3fr;gap:8px}.savebar button{width:100%}.menu{position:fixed;inset:0;z-index:60;background:#0009;display:none;padding:14px;align-items:flex-end}.menu.open{display:flex}.menucard{background:var(--panel);border:1px solid var(--line);border-radius:22px;width:100%;padding:12px;padding-bottom:max(12px,env(safe-area-inset-bottom));box-shadow:0 20px 70px #000}.menucard h3{margin:4px 4px 2px}.menucard p{margin:0 4px 10px;color:var(--muted);font-size:12px}.menucard button{width:100%;margin:5px 0;text-align:left}.menucard .danger{color:var(--danger)}.toast{position:fixed;left:50%;bottom:calc(52px + env(safe-area-inset-bottom));transform:translate(-50%,28px);background:#eaf8f1;color:#102019;padding:10px 14px;border-radius:999px;font-weight:750;z-index:90;opacity:0;pointer-events:none;transition:.2s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}.peek{position:fixed;z-index:28;left:18px;right:18px;bottom:calc(50px + env(safe-area-inset-bottom));background:rgba(18,27,37,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid #3b4d5e;border-radius:15px;box-shadow:0 12px 36px #0008;padding:6px 7px;display:none;align-items:center;gap:7px;transition:.18s opacity,.18s transform}.peek.show{display:flex}.peek.fading{opacity:0;transform:translateY(7px)}.peekmain{flex:1;min-width:0}.peekmain b,.peekmain small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.peekmain b{font-size:12px}.peekmain small{margin-top:1px;color:var(--muted);font-size:9px}.peek button{min-height:32px;height:32px;border-radius:10px;padding:0 10px;font-size:11px}.peek .peekclose{width:32px;padding:0;background:transparent}.maphint{position:absolute;z-index:4;left:50%;top:12px;transform:translateX(-50%);background:#0b1118cc;border:1px solid #304153;color:var(--muted);border-radius:999px;padding:6px 10px;font-size:10px;font-weight:750;pointer-events:none;opacity:0;transition:.25s}.maphint.show{opacity:1}.mapcard{position:relative} @media(min-width:760px){body{max-width:760px;margin:auto;border-inline:1px solid var(--line)}.bottomnav{left:50%;right:auto;width:730px;transform:translateX(-50%)}.sheet{left:50%;right:auto;width:760px;transform:translate(-50%,105%)}.sheet.open{transform:translate(-50%,0)}.menu.open{padding-left:calc((100vw - 760px)/2 + 14px);padding-right:calc((100vw - 760px)/2 + 14px)}}
+</style></head><body>
+<header class="apphead"><div class="headrow"><div class="brand"><b>🗺️ Terrópia</b><small>World Editor Mobile · v9</small></div><div class="statuspill" id="status">Sem alterações</div></div><div class="searchrow"><div class="searchbox" id="searchbox"><input id="search" placeholder="Buscar código, nome ou região…" autocomplete="off" enterkeyhint="search"><button class="clear" id="clearSearch" aria-label="Limpar busca">✕</button></div><button class="icon" id="focusMap" aria-label="Centralizar mapa">◎</button></div></header>
+<div class="filters" id="filters"></div>
+<section class="mapcard"><div class="maphint" id="maphint">Arraste para mover · belisque para zoom</div><div class="mapbar"><div class="info"><strong id="mapTitle">Mapa do mundo</strong><small id="mapInfo">Toque em uma tela para editar</small></div><div class="zoomgroup"><button id="fitMap" aria-label="Enquadrar telas">⤢</button><button id="zoomOut" aria-label="Diminuir mapa">−</button><button id="zoomIn" aria-label="Aumentar mapa">＋</button></div></div><main class="mapwrap" id="mapwrap"><div class="grid" id="grid"></div></main></section>
+<div class="peek" id="peek"><div class="peekmain"><b id="peekTitle"></b><small id="peekMeta"></small></div><button id="peekEdit" class="primary">Editar</button><button id="peekClose" class="peekclose" aria-label="Fechar seleção">✕</button></div>
+<nav class="bottomnav"><button class="navbtn active" id="navMap"><span>⌘</span>Mapa</button><button class="navbtn" id="navChanged"><span>●</span>Alteradas<i class="badge" id="changedBadge" hidden>0</i></button><button class="navbtn" id="navFiles"><span>⇅</span>Arquivos</button></nav>
+<section class="sheet" id="sheet"><div class="handle"></div><div class="sheethead"><div class="sheettitle"><b id="title">Tela</b><small id="meta"></small></div><i class="dirty" id="dirty" title="Alterações não salvas"></i><button class="close" id="close">✕</button></div><nav class="tabs"><button data-tab="basic" class="active">Básico</button><button data-tab="content">Conteúdo</button><button data-tab="notes">Notas</button></nav><div class="form"><div class="quickstats" id="quickstats"></div>
+<div class="pane active" data-pane="basic"><div class="field"><label>Nome da tela</label><input id="name"></div><div class="row"><div class="field"><label>Região</label><select id="region"><option>Atenaria</option><option>Altaria</option><option>Mornaqua</option><option>Invérnia</option><option>Calindra</option><option>Solácia</option><option>Blazíria</option><option>Necrovícia</option></select></div><div class="field"><label>Tipo</label><select id="type"><option>overworld</option><option>town</option><option>dungeon</option><option>interior</option></select></div></div><div class="field"><label>Área / ID runtime</label><input id="area"></div><p class="help">A edição mobile altera apenas os campos visíveis. Conexões, quests, eventos, layers e demais dados avançados permanecem preservados.</p></div>
+<div class="pane" data-pane="content"><p class="help">Um item por linha. Aceita <b>Nome [id]</b> e quantidade com <b>×3</b>. Propriedades avançadas de itens existentes são mantidas.</p><div class="field"><label>👤 NPCs <small>1 por linha</small></label><textarea id="npcs"></textarea></div><div class="field"><label>🌿 Recursos <small>1 por linha</small></label><textarea id="resources"></textarea></div><div class="field"><label>⚔️ Inimigos <small>1 por linha</small></label><textarea id="enemies"></textarea></div><div class="field"><label>🏠 Construções <small>1 por linha</small></label><textarea id="buildings"></textarea></div></div>
+<div class="pane" data-pane="notes"><div class="field"><label>Mecânicas</label><textarea id="mechanics" placeholder="Uma por linha"></textarea></div><div class="field"><label>Observações / direção</label><textarea id="notes" placeholder="Descreva a mudança desejada nesta tela…"></textarea></div></div>
+<div class="savebar"><button id="reset">Restaurar</button><button id="save" class="primary">Salvar alterações</button></div></div></section>
+<div class="menu" id="menu"><div class="menucard"><h3>Arquivos do mundo</h3><p>Exporte antes de trocar de aparelho ou limpar os dados do Safari.</p><button id="export">⬇️ Exportar Changes + Snapshot</button><button id="prompt">📝 Exportar prompt curto</button><button id="importBtn">⬆️ Importar JSON</button><input id="file" type="file" accept=".json,application/json" hidden><button id="clearAll" class="danger">♻️ Limpar alterações locais</button><button id="closeMenu">Fechar</button></div></div><div class="toast" id="toast"></div>
+<script>window.WORLD_EDITOR_SEED={
+  "schemaVersion": 4,
+  "editorVersion": "v00180",
+  "sourceWorldMap": "v00163",
+  "columns": 20,
+  "rows": 21,
+  "terrainRows": [
+    "~~~~~~~~~~~~~~~NNNN~",
+    "~~~~~~~~~~~~~~~~NNNN",
+    "~~~~~~~~~~~~~~~NNNNN",
+    "~~~~~~~~~~~~BBBBN~N~",
+    "~~~~~~~~~~~~~BBBB~~~",
+    "~~~~~~~~~~~~BBBBB~~~",
+    "~~~~~~~~~SSSSB~B~~~~",
+    "~~~~~~~~~~SSSS~~~~~~",
+    "~~~~~~~~~SSSSS~~~~~~",
+    "MMMM~CCCC~S~S~~~~~~~",
+    "~MMMM~CCCC~~~~~~~~~~",
+    "MMMMMCCCCC~~~~~~~~~~",
+    "~M~M~~C~C~~~~~~~~~~~",
+    "~~~~~IIII~~~~~~~~~~~",
+    "~~~~~~IIII~~~~~~~~~~",
+    "~~~~~IIIII~~~~~~~~~~",
+    "~~~~~~I~I~~~~~~~~~~~",
+    "AAAAALLLL~~~~~~~~~~~",
+    "AAAAA~LLLL~~~~~~~~~~",
+    "AAAAALLLLL~~~~~~~~~~",
+    "~~~~~~L~L~~~~~~~~~~~"
+  ],
+  "regions": [
+    {
+      "code": "A",
+      "key": "atenaria",
+      "name": "Atenaria",
+      "terrain": "fields"
+    },
+    {
+      "code": "L",
+      "key": "altaria",
+      "name": "Altaria",
+      "terrain": "mountains"
+    },
+    {
+      "code": "M",
+      "key": "mornaqua",
+      "name": "Mornaqua",
+      "terrain": "coast"
+    },
+    {
+      "code": "I",
+      "key": "invernia",
+      "name": "Invérnia",
+      "terrain": "snow"
+    },
+    {
+      "code": "C",
+      "key": "calindra",
+      "name": "Calindra",
+      "terrain": "jungle"
+    },
+    {
+      "code": "S",
+      "key": "solacia",
+      "name": "Solácia",
+      "terrain": "desert"
+    },
+    {
+      "code": "B",
+      "key": "blaziria",
+      "name": "Blazíria",
+      "terrain": "volcanic"
+    },
+    {
+      "code": "N",
+      "key": "necrovicia",
+      "name": "Necrovícia",
+      "terrain": "wasteland"
+    }
+  ],
+  "screens": {
+    "AT-099": {
+      "code": "AT-099",
+      "x": 15,
+      "y": 0,
+      "name": "Entrada Devastada",
+      "area": "necrovicia099",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-100": {
+      "code": "AT-100",
+      "x": 16,
+      "y": 0,
+      "name": "Trilha das Raízes Mortas",
+      "area": "necrovicia100",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-101": {
+      "code": "AT-101",
+      "x": 17,
+      "y": 0,
+      "name": "Campo Cinzento",
+      "area": "necrovicia101",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-102": {
+      "code": "AT-102",
+      "x": 18,
+      "y": 0,
+      "name": "Pedras Negras",
+      "area": "necrovicia102",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-103": {
+      "code": "AT-103",
+      "x": 16,
+      "y": 1,
+      "name": "Caminho Quebrado",
+      "area": "necrovicia103",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-104": {
+      "code": "AT-104",
+      "x": 17,
+      "y": 1,
+      "name": "Baixada de Cinzas",
+      "area": "necrovicia104",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-105": {
+      "code": "AT-105",
+      "x": 18,
+      "y": 1,
+      "name": "Bosque Seco",
+      "area": "necrovicia105",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-106": {
+      "code": "AT-106",
+      "x": 19,
+      "y": 1,
+      "name": "Passagem dos Espinhos",
+      "area": "necrovicia106",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-107": {
+      "code": "AT-107",
+      "x": 15,
+      "y": 2,
+      "name": "Planície Morta",
+      "area": "necrovicia107",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-108": {
+      "code": "AT-108",
+      "x": 16,
+      "y": 2,
+      "name": "Corredor de Pedra Negra",
+      "area": "necrovicia108",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-109": {
+      "code": "AT-109",
+      "x": 17,
+      "y": 2,
+      "name": "Clareira Pálida",
+      "area": "necrovicia109",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-110": {
+      "code": "AT-110",
+      "x": 18,
+      "y": 2,
+      "name": "Fenda Silenciosa",
+      "area": "necrovicia110",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-111": {
+      "code": "AT-111",
+      "x": 19,
+      "y": 2,
+      "name": "Margem Sombria",
+      "area": "necrovicia111",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-084": {
+      "code": "AT-084",
+      "x": 12,
+      "y": 3,
+      "name": "Base de Basalto",
+      "area": "blaziria084",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-085": {
+      "code": "AT-085",
+      "x": 13,
+      "y": 3,
+      "name": "Trilha de Cinzas",
+      "area": "blaziria085",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-086": {
+      "code": "AT-086",
+      "x": 14,
+      "y": 3,
+      "name": "Fratura Escura",
+      "area": "blaziria086",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-087": {
+      "code": "AT-087",
+      "x": 15,
+      "y": 3,
+      "name": "Encosta Vulcânica",
+      "area": "blaziria087",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-112": {
+      "code": "AT-112",
+      "x": 16,
+      "y": 3,
+      "name": "Desvio das Raízes",
+      "area": "necrovicia112",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-113": {
+      "code": "AT-113",
+      "x": 18,
+      "y": 3,
+      "name": "Extremo Nordeste",
+      "area": "necrovicia113",
+      "type": "overworld",
+      "region": "Necrovícia",
+      "regionKey": "necrovicia",
+      "terrain": "wasteland",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-088": {
+      "code": "AT-088",
+      "x": 13,
+      "y": 4,
+      "name": "Campo de Escória",
+      "area": "blaziria088",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-089": {
+      "code": "AT-089",
+      "x": 14,
+      "y": 4,
+      "name": "Passagem de Obsidiana",
+      "area": "blaziria089",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-090": {
+      "code": "AT-090",
+      "x": 15,
+      "y": 4,
+      "name": "Vale de Cinzas",
+      "area": "blaziria090",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-091": {
+      "code": "AT-091",
+      "x": 16,
+      "y": 4,
+      "name": "Dobra de Basalto",
+      "area": "blaziria091",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-092": {
+      "code": "AT-092",
+      "x": 12,
+      "y": 5,
+      "name": "Terraço Negro",
+      "area": "blaziria092",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-093": {
+      "code": "AT-093",
+      "x": 13,
+      "y": 5,
+      "name": "Corredor de Rocha",
+      "area": "blaziria093",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-094": {
+      "code": "AT-094",
+      "x": 14,
+      "y": 5,
+      "name": "Respiradouro Baixo",
+      "area": "blaziria094",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-095": {
+      "code": "AT-095",
+      "x": 15,
+      "y": 5,
+      "name": "Ladeira de Magma",
+      "area": "blaziria095",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-096": {
+      "code": "AT-096",
+      "x": 16,
+      "y": 5,
+      "name": "Espigões do Leste",
+      "area": "blaziria096",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-069": {
+      "code": "AT-069",
+      "x": 9,
+      "y": 6,
+      "name": "Faixa de Areia",
+      "area": "solacia069",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-070": {
+      "code": "AT-070",
+      "x": 10,
+      "y": 6,
+      "name": "Dunas do Sul",
+      "area": "solacia070",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-071": {
+      "code": "AT-071",
+      "x": 11,
+      "y": 6,
+      "name": "Planície Seca",
+      "area": "solacia071",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-072": {
+      "code": "AT-072",
+      "x": 12,
+      "y": 6,
+      "name": "Marco de Arenito",
+      "area": "solacia072",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-097": {
+      "code": "AT-097",
+      "x": 13,
+      "y": 6,
+      "name": "Desvio das Cinzas",
+      "area": "blaziria097",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-098": {
+      "code": "AT-098",
+      "x": 15,
+      "y": 6,
+      "name": "Borda Devastada",
+      "area": "blaziria098",
+      "type": "overworld",
+      "region": "Blazíria",
+      "regionKey": "blaziria",
+      "terrain": "volcanic",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-073": {
+      "code": "AT-073",
+      "x": 10,
+      "y": 7,
+      "name": "Trilha do Sol",
+      "area": "solacia073",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-074": {
+      "code": "AT-074",
+      "x": 11,
+      "y": 7,
+      "name": "Baixio Árido",
+      "area": "solacia074",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-075": {
+      "code": "AT-075",
+      "x": 12,
+      "y": 7,
+      "name": "Duna Longa",
+      "area": "solacia075",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-076": {
+      "code": "AT-076",
+      "x": 13,
+      "y": 7,
+      "name": "Passagem do Leste",
+      "area": "solacia076",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-077": {
+      "code": "AT-077",
+      "x": 9,
+      "y": 8,
+      "name": "Leito Seco",
+      "area": "solacia077",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-078": {
+      "code": "AT-078",
+      "x": 10,
+      "y": 8,
+      "name": "Campo de Cactos",
+      "area": "solacia078",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-079": {
+      "code": "AT-079",
+      "x": 11,
+      "y": 8,
+      "name": "Planície de Pedra",
+      "area": "solacia079",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-080": {
+      "code": "AT-080",
+      "x": 12,
+      "y": 8,
+      "name": "Dunas Altas",
+      "area": "solacia080",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-081": {
+      "code": "AT-081",
+      "x": 13,
+      "y": 8,
+      "name": "Garganta de Areia",
+      "area": "solacia081",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-039": {
+      "code": "AT-039",
+      "x": 0,
+      "y": 9,
+      "name": "Costa do Sul",
+      "area": "mornaqua039",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-040": {
+      "code": "AT-040",
+      "x": 1,
+      "y": 9,
+      "name": "Praia Clara",
+      "area": "mornaqua040",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-041": {
+      "code": "AT-041",
+      "x": 2,
+      "y": 9,
+      "name": "Dunas Baixas",
+      "area": "mornaqua041",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-042": {
+      "code": "AT-042",
+      "x": 3,
+      "y": 9,
+      "name": "Ponta das Conchas",
+      "area": "mornaqua042",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-054": {
+      "code": "AT-054",
+      "x": 5,
+      "y": 9,
+      "name": "Entrada da Selva",
+      "area": "calindra054",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-055": {
+      "code": "AT-055",
+      "x": 6,
+      "y": 9,
+      "name": "Trilha das Raízes",
+      "area": "calindra055",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-056": {
+      "code": "AT-056",
+      "x": 7,
+      "y": 9,
+      "name": "Bosque Fechado",
+      "area": "calindra056",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-057": {
+      "code": "AT-057",
+      "x": 8,
+      "y": 9,
+      "name": "Arco de Cipós",
+      "area": "calindra057",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-082": {
+      "code": "AT-082",
+      "x": 10,
+      "y": 9,
+      "name": "Desvio das Tâmaras",
+      "area": "solacia082",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-083": {
+      "code": "AT-083",
+      "x": 12,
+      "y": 9,
+      "name": "Borda do Basalto",
+      "area": "solacia083",
+      "type": "overworld",
+      "region": "Solácia",
+      "regionKey": "solacia",
+      "terrain": "desert",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-043": {
+      "code": "AT-043",
+      "x": 1,
+      "y": 10,
+      "name": "Trilha da Maré",
+      "area": "mornaqua043",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-044": {
+      "code": "AT-044",
+      "x": 2,
+      "y": 10,
+      "name": "Lagoa Rasa",
+      "area": "mornaqua044",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-045": {
+      "code": "AT-045",
+      "x": 3,
+      "y": 10,
+      "name": "Faixa de Coqueiros",
+      "area": "mornaqua045",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-046": {
+      "code": "AT-046",
+      "x": 4,
+      "y": 10,
+      "name": "Enseada do Leste",
+      "area": "mornaqua046",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-058": {
+      "code": "AT-058",
+      "x": 6,
+      "y": 10,
+      "name": "Clareira Úmida",
+      "area": "calindra058",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-059": {
+      "code": "AT-059",
+      "x": 7,
+      "y": 10,
+      "name": "Solo de Musgo",
+      "area": "calindra059",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-060": {
+      "code": "AT-060",
+      "x": 8,
+      "y": 10,
+      "name": "Passagem das Folhas",
+      "area": "calindra060",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-061": {
+      "code": "AT-061",
+      "x": 9,
+      "y": 10,
+      "name": "Selva Oriental",
+      "area": "calindra061",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-047": {
+      "code": "AT-047",
+      "x": 0,
+      "y": 11,
+      "name": "Margem de Areia",
+      "area": "mornaqua047",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-048": {
+      "code": "AT-048",
+      "x": 1,
+      "y": 11,
+      "name": "Passagem das Redes",
+      "area": "mornaqua048",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-049": {
+      "code": "AT-049",
+      "x": 2,
+      "y": 11,
+      "name": "Baía Serena",
+      "area": "mornaqua049",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-050": {
+      "code": "AT-050",
+      "x": 3,
+      "y": 11,
+      "name": "Costa dos Corais",
+      "area": "mornaqua050",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-051": {
+      "code": "AT-051",
+      "x": 4,
+      "y": 11,
+      "name": "Restinga Oriental",
+      "area": "mornaqua051",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-062": {
+      "code": "AT-062",
+      "x": 5,
+      "y": 11,
+      "name": "Baixada Verde",
+      "area": "calindra062",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-063": {
+      "code": "AT-063",
+      "x": 6,
+      "y": 11,
+      "name": "Corredor de Raízes",
+      "area": "calindra063",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-064": {
+      "code": "AT-064",
+      "x": 7,
+      "y": 11,
+      "name": "Clareira do Dossel",
+      "area": "calindra064",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-065": {
+      "code": "AT-065",
+      "x": 8,
+      "y": 11,
+      "name": "Margem Escura",
+      "area": "calindra065",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-066": {
+      "code": "AT-066",
+      "x": 9,
+      "y": 11,
+      "name": "Mata de Resina",
+      "area": "calindra066",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-052": {
+      "code": "AT-052",
+      "x": 1,
+      "y": 12,
+      "name": "Duna Interior",
+      "area": "mornaqua052",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-053": {
+      "code": "AT-053",
+      "x": 3,
+      "y": 12,
+      "name": "Ponta do Norte",
+      "area": "mornaqua053",
+      "type": "overworld",
+      "region": "Mornaqua",
+      "regionKey": "mornaqua",
+      "terrain": "coast",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-067": {
+      "code": "AT-067",
+      "x": 6,
+      "y": 12,
+      "name": "Desvio das Folhas",
+      "area": "calindra067",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-068": {
+      "code": "AT-068",
+      "x": 8,
+      "y": 12,
+      "name": "Saída da Selva",
+      "area": "calindra068",
+      "type": "overworld",
+      "region": "Calindra",
+      "regionKey": "calindra",
+      "terrain": "jungle",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-015": {
+      "code": "AT-015",
+      "x": 0,
+      "y": 17,
+      "name": "Estrada dos Campos",
+      "area": "atenaria015",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-016": {
+      "code": "AT-016",
+      "x": 1,
+      "y": 17,
+      "name": "Clareira do Poente",
+      "area": "atenaria016",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-011": {
+      "code": "AT-011",
+      "x": 2,
+      "y": 17,
+      "name": "Passagem da Bruxa",
+      "area": "witchyard",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "Geraldo [gatekeeper]\nBruxa Selene [witch]",
+      "resources": "Baú da Bruxa [chest]",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [
+          {
+            "iid": "AT-011_npcs_geraldo_1",
+            "status": "existing",
+            "definitionId": "gatekeeper",
+            "name": "Geraldo",
+            "quantity": 1,
+            "properties": {
+              "role": "",
+              "behavior": "parado",
+              "interactions": {
+                "talk": true,
+                "shop": false,
+                "quest": false,
+                "combat": false
+              },
+              "shopId": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 26.56,
+              "y": 36.11
+            }
+          },
+          {
+            "iid": "AT-011_npcs_bruxa_selene_2",
+            "status": "existing",
+            "definitionId": "witch",
+            "name": "Bruxa Selene",
+            "quantity": 1,
+            "properties": {
+              "role": "",
+              "behavior": "parado",
+              "interactions": {
+                "talk": true,
+                "shop": false,
+                "quest": false,
+                "combat": false
+              },
+              "shopId": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 26.56,
+              "y": 25.0
+            }
+          }
+        ],
+        "resources": [
+          {
+            "iid": "AT-011_resources_simplestaff_1",
+            "status": "existing",
+            "definitionId": "chest",
+            "name": "Baú da Bruxa",
+            "quantity": 1,
+            "properties": {
+              "distribution": "pontos distintos",
+              "respawn": "normal",
+              "gathering": "manual",
+              "requirement": "nenhum",
+              "persistent": true
+            },
+            "notes": "Spawn legacy chests:witchChest; conteúdo legacy: simpleStaff.",
+            "visual": {
+              "x": 42.19,
+              "y": 13.89
+            }
+          }
+        ],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-012": {
+      "code": "AT-012",
+      "x": 3,
+      "y": 17,
+      "name": "Floresta Obscura",
+      "area": "darkforest",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "",
+      "resources": "",
+      "enemies": "Aranha Sombria [spider1]\nAranha da Névoa [spider2]\nAranha Espinhosa [spider3]\nAranha Venenosa [spider4]",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [
+          {
+            "iid": "AT-012_enemies_aranha_sombria_1",
+            "status": "existing",
+            "definitionId": "spider1",
+            "name": "Aranha Sombria",
+            "quantity": 1,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 14.06,
+              "y": 25.0
+            }
+          },
+          {
+            "iid": "AT-012_enemies_aranha_da_nevoa_2",
+            "status": "existing",
+            "definitionId": "spider2",
+            "name": "Aranha da Névoa",
+            "quantity": 1,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 23.44,
+              "y": 13.89
+            }
+          },
+          {
+            "iid": "AT-012_enemies_aranha_espinhosa_3",
+            "status": "existing",
+            "definitionId": "spider3",
+            "name": "Aranha Espinhosa",
+            "quantity": 1,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 32.81,
+              "y": 36.11
+            }
+          },
+          {
+            "iid": "AT-012_enemies_aranha_venenosa_4",
+            "status": "existing",
+            "definitionId": "spider4",
+            "name": "Aranha Venenosa",
+            "quantity": 1,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 42.19,
+              "y": 25.0
+            }
+          }
+        ],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-017": {
+      "code": "AT-017",
+      "x": 4,
+      "y": 17,
+      "name": "Margem dos Salgueiros",
+      "area": "atenaria017",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-024": {
+      "code": "AT-024",
+      "x": 5,
+      "y": 17,
+      "name": "Passagem de Granito",
+      "area": "altaria024",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-025": {
+      "code": "AT-025",
+      "x": 6,
+      "y": 17,
+      "name": "Trilha da Ardósia",
+      "area": "altaria025",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-026": {
+      "code": "AT-026",
+      "x": 7,
+      "y": 17,
+      "name": "Encosta dos Pinheiros",
+      "area": "altaria026",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-027": {
+      "code": "AT-027",
+      "x": 8,
+      "y": 17,
+      "name": "Vale Alto",
+      "area": "altaria027",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-006": {
+      "code": "AT-006",
+      "x": 0,
+      "y": 18,
+      "name": "Vila Carpinelli — Área Oeste",
+      "area": "village2",
+      "type": "town",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "Anciã Mira [elder]\nAlfredo [alfredo]",
+      "resources": "Iron [ore:iron] ×3",
+      "enemies": "Slime do Musgo [s1]\nSlime Azul [s2]\nSlime Rubro [s3]\nSlime Antigo [s4]",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [
+          {
+            "iid": "AT-006_npcs_ancia_mira_1",
+            "status": "existing",
+            "definitionId": "elder",
+            "name": "Anciã Mira",
+            "quantity": 1,
+            "properties": {
+              "role": "",
+              "behavior": "parado",
+              "interactions": {
+                "talk": true,
+                "shop": false,
+                "quest": false,
+                "combat": false
+              },
+              "shopId": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 82.81,
+              "y": 52.78
+            }
+          },
+          {
+            "iid": "AT-006_npcs_alfredo_2",
+            "status": "existing",
+            "definitionId": "alfredo",
+            "name": "Alfredo",
+            "quantity": 1,
+            "properties": {
+              "role": "",
+              "behavior": "parado",
+              "interactions": {
+                "talk": true,
+                "shop": false,
+                "quest": false,
+                "combat": false
+              },
+              "shopId": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 42.19,
+              "y": 58.33
+            }
+          }
+        ],
+        "resources": [
+          {
+            "iid": "AT-006_resources_iron_1",
+            "status": "existing",
+            "definitionId": "ore:iron",
+            "name": "Iron",
+            "quantity": 3,
+            "properties": {
+              "distribution": "pontos distintos",
+              "respawn": "normal",
+              "gathering": "manual",
+              "requirement": "nenhum",
+              "persistent": false
+            },
+            "notes": "",
+            "visual": {
+              "x": 84,
+              "y": 65
+            }
+          }
+        ],
+        "enemies": [
+          {
+            "iid": "AT-006_enemies_slime_do_musgo_1",
+            "status": "existing",
+            "definitionId": "s1",
+            "name": "Slime do Musgo",
+            "quantity": 1,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 7.81,
+              "y": 30.56
+            }
+          },
+          {
+            "iid": "AT-006_enemies_slime_azul_2",
+            "status": "existing",
+            "definitionId": "s2",
+            "name": "Slime Azul",
+            "quantity": 1,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 26.56,
+              "y": 30.56
+            }
+          },
+          {
+            "iid": "AT-006_enemies_slime_rubro_3",
+            "status": "existing",
+            "definitionId": "s3",
+            "name": "Slime Rubro",
+            "quantity": 1,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 32.81,
+              "y": 30.56
+            }
+          },
+          {
+            "iid": "AT-006_enemies_slime_antigo_4",
+            "status": "existing",
+            "definitionId": "s4",
+            "name": "Slime Antigo",
+            "quantity": 1,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 42.19,
+              "y": 19.44
+            }
+          }
+        ],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-005": {
+      "code": "AT-005",
+      "x": 1,
+      "y": 18,
+      "name": "Vila Carpinelli",
+      "area": "village",
+      "type": "town",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "Joaquim [farmer]\nHeitor [heitor]",
+      "resources": "Iron [ore:iron] ×4\nFramboesa [berry:raspberry] ×3",
+      "enemies": "Galinha [chicken3] ×3",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [
+          {
+            "iid": "AT-005_npcs_joaquim_1",
+            "status": "existing",
+            "definitionId": "farmer",
+            "name": "Joaquim",
+            "quantity": 1,
+            "properties": {
+              "role": "",
+              "behavior": "parado",
+              "interactions": {
+                "talk": true,
+                "shop": false,
+                "quest": false,
+                "combat": false
+              },
+              "shopId": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 17.19,
+              "y": 47.22
+            }
+          },
+          {
+            "iid": "AT-005_npcs_heitor_2",
+            "status": "existing",
+            "definitionId": "heitor",
+            "name": "Heitor",
+            "quantity": 1,
+            "properties": {
+              "role": "",
+              "behavior": "parado",
+              "interactions": {
+                "talk": true,
+                "shop": false,
+                "quest": false,
+                "combat": false
+              },
+              "shopId": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 32.81,
+              "y": 30.56
+            }
+          }
+        ],
+        "resources": [
+          {
+            "iid": "AT-005_resources_iron_1",
+            "status": "existing",
+            "definitionId": "ore:iron",
+            "name": "Iron",
+            "quantity": 4,
+            "properties": {
+              "distribution": "pontos distintos",
+              "respawn": "normal",
+              "gathering": "manual",
+              "requirement": "nenhum",
+              "persistent": false
+            },
+            "notes": "",
+            "visual": {
+              "x": 63,
+              "y": 42
+            }
+          },
+          {
+            "iid": "AT-005_resources_raspberry_5",
+            "status": "existing",
+            "definitionId": "berry:raspberry",
+            "name": "Framboesa",
+            "quantity": 3,
+            "properties": {
+              "distribution": "pontos distintos",
+              "respawn": "normal",
+              "gathering": "manual",
+              "requirement": "nenhum",
+              "persistent": false
+            },
+            "notes": "Normalizado a partir dos spawns legacy berries:rasp1/2/3.",
+            "visual": {
+              "x": 39.06,
+              "y": 30.56
+            }
+          }
+        ],
+        "enemies": [
+          {
+            "iid": "AT-005_enemies_galinha_1",
+            "status": "existing",
+            "definitionId": "chicken3",
+            "name": "Galinha",
+            "quantity": 3,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 10.94,
+              "y": 30.56
+            }
+          }
+        ],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-007": {
+      "code": "AT-007",
+      "x": 2,
+      "y": 18,
+      "name": "Entrada da Caverna",
+      "area": "entrance",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "Clarisse [clarisse]\nJordan [jordan]",
+      "resources": "Iron [ore:iron] ×3",
+      "enemies": "Rato Gigante [rat2] ×2",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [
+          {
+            "iid": "AT-007_npcs_clarisse_1",
+            "status": "existing",
+            "definitionId": "clarisse",
+            "name": "Clarisse",
+            "quantity": 1,
+            "properties": {
+              "role": "",
+              "behavior": "parado",
+              "interactions": {
+                "talk": true,
+                "shop": false,
+                "quest": false,
+                "combat": false
+              },
+              "shopId": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 35.94,
+              "y": 30.56
+            }
+          },
+          {
+            "iid": "AT-007_npcs_jordan_2",
+            "status": "existing",
+            "definitionId": "jordan",
+            "name": "Jordan",
+            "quantity": 1,
+            "properties": {
+              "role": "",
+              "behavior": "parado",
+              "interactions": {
+                "talk": true,
+                "shop": false,
+                "quest": false,
+                "combat": false
+              },
+              "shopId": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 20.31,
+              "y": 30.56
+            }
+          }
+        ],
+        "resources": [
+          {
+            "iid": "AT-007_resources_iron_1",
+            "status": "existing",
+            "definitionId": "ore:iron",
+            "name": "Iron",
+            "quantity": 3,
+            "properties": {
+              "distribution": "pontos distintos",
+              "respawn": "normal",
+              "gathering": "manual",
+              "requirement": "nenhum",
+              "persistent": false
+            },
+            "notes": "",
+            "visual": {
+              "x": 53,
+              "y": 40
+            }
+          }
+        ],
+        "enemies": [
+          {
+            "iid": "AT-007_enemies_rato_gigante_1",
+            "status": "existing",
+            "definitionId": "rat2",
+            "name": "Rato Gigante",
+            "quantity": 2,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 17.19,
+              "y": 41.67
+            }
+          }
+        ],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-018": {
+      "code": "AT-018",
+      "x": 3,
+      "y": 18,
+      "name": "Caminho do Prado",
+      "area": "atenaria018",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-019": {
+      "code": "AT-019",
+      "x": 4,
+      "y": 18,
+      "name": "Campo do Leste",
+      "area": "atenaria019",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-028": {
+      "code": "AT-028",
+      "x": 6,
+      "y": 18,
+      "name": "Caminho do Cairn",
+      "area": "altaria028",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-029": {
+      "code": "AT-029",
+      "x": 7,
+      "y": 18,
+      "name": "Terraço Rochoso",
+      "area": "altaria029",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-030": {
+      "code": "AT-030",
+      "x": 8,
+      "y": 18,
+      "name": "Ponte de Pedra",
+      "area": "altaria030",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-031": {
+      "code": "AT-031",
+      "x": 9,
+      "y": 18,
+      "name": "Garganta do Vento",
+      "area": "altaria031",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-023": {
+      "code": "AT-023",
+      "x": 0,
+      "y": 19,
+      "name": "Caminho das Cercas",
+      "area": "atenaria023",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-022": {
+      "code": "AT-022",
+      "x": 1,
+      "y": 19,
+      "name": "Clareira dos Carvalhos",
+      "area": "atenaria022",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "Elis [elis]",
+      "resources": "Girassol [sunflower] ×3",
+      "enemies": "",
+      "buildings": "Cabana da Alquimista [elis-cabin]",
+      "mechanics": "",
+      "notes": "Girassol pode ser colhido. É um item que pode ser usado para criar poção que aumenta o dano causado em 5% por 10 ações de ataque. Os girassóis ficam espalhados pela tela. A Elis explica como funciona o preparo da poção. (você compra um frasco que ela vende, enche de água, usa o girassol no frasco com água e a Poção de Ataque está pronta). 1 de Alquimia é necessário para fazer poção de ataque. Adicionar também uma nova função que é clicar com o botão direito do Mouse sobre um NPC, o que abre menu cascata com as opções \"Falar, Abrir Loja, Cancelar\". A opção \"Abrir Loja\" só vai existir quando o NPC tiver uma loja. O que é o caso da Elis, que vai ter uma loja que vende frasco (por enquanto). O frasco vem vazio, então é preciso usar o frasco na água para encher de água. A Elis fica posicionada dentro da cabana. Então criar o interior da Cabana dela também, com itens de alquimia como decoração.",
+      "entities": {
+        "npcs": [
+          {
+            "iid": "AT-022_npcs_elis_1",
+            "status": "existing",
+            "definitionId": "elis",
+            "name": "Elis",
+            "quantity": 1,
+            "properties": {
+              "role": "Alquimista",
+              "behavior": "parado",
+              "interactions": {
+                "talk": true,
+                "shop": true,
+                "quest": false,
+                "combat": false
+              },
+              "shopId": "elis-shop",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 57,
+              "y": 61
+            }
+          }
+        ],
+        "resources": [
+          {
+            "iid": "AT-022_resources_girassol_1",
+            "status": "existing",
+            "definitionId": "sunflower",
+            "name": "Girassol",
+            "quantity": 3,
+            "properties": {
+              "distribution": "três pontos distintos",
+              "respawn": "normal",
+              "gathering": "manual",
+              "requirement": "nenhum",
+              "persistent": false
+            },
+            "notes": "",
+            "visual": {
+              "x": 17.19,
+              "y": 30.56
+            }
+          }
+        ],
+        "enemies": [],
+        "buildings": [
+          {
+            "iid": "AT-022_buildings_cabana_da_alquimista_1",
+            "status": "existing",
+            "definitionId": "elis-cabin",
+            "name": "Cabana da Alquimista",
+            "quantity": 1,
+            "properties": {
+              "enterable": true,
+              "interiorId": "interior_alchemist_hut",
+              "collision": true,
+              "door": true,
+              "function": "Alquimia / Loja da Elis"
+            },
+            "notes": "",
+            "visual": {
+              "x": 50,
+              "y": 20
+            }
+          }
+        ]
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [
+        {
+          "iid": "AT-022_interior_alchemist_hut",
+          "id": "interior_alchemist_hut",
+          "name": "Interior da Cabana da Alquimista",
+          "linkedBuildingIid": "AT-022_buildings_cabana_da_alquimista_1",
+          "returnToScreen": true,
+          "implemented": true,
+          "notes": "Interior vinculado à AT-022 com Elis e decoração de alquimia."
+        }
+      ],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-014": {
+      "code": "AT-014",
+      "x": 2,
+      "y": 19,
+      "name": "Floresta dos Cogumelos",
+      "area": "mushroomforest",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "Gnomo Júlio [gnome]",
+      "resources": "Iron [ore:iron] ×2\nCogumelo [berry:mushroom] ×2",
+      "enemies": "Capivara [capybara2] ×2",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [
+          {
+            "iid": "AT-014_npcs_gnomo_julio_1",
+            "status": "existing",
+            "definitionId": "gnome",
+            "name": "Gnomo Júlio",
+            "quantity": 1,
+            "properties": {
+              "role": "",
+              "behavior": "parado",
+              "interactions": {
+                "talk": true,
+                "shop": false,
+                "quest": false,
+                "combat": false
+              },
+              "shopId": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 57.81,
+              "y": 58.33
+            }
+          }
+        ],
+        "resources": [
+          {
+            "iid": "AT-014_resources_iron_1",
+            "status": "existing",
+            "definitionId": "ore:iron",
+            "name": "Iron",
+            "quantity": 2,
+            "properties": {
+              "distribution": "pontos distintos",
+              "respawn": "normal",
+              "gathering": "manual",
+              "requirement": "nenhum",
+              "persistent": false
+            },
+            "notes": "",
+            "visual": {
+              "x": 23,
+              "y": 59
+            }
+          },
+          {
+            "iid": "AT-014_resources_mushroom_3",
+            "status": "existing",
+            "definitionId": "berry:mushroom",
+            "name": "Cogumelo",
+            "quantity": 2,
+            "properties": {
+              "distribution": "pontos distintos",
+              "respawn": "normal",
+              "gathering": "manual",
+              "requirement": "nenhum",
+              "persistent": false
+            },
+            "notes": "Normalizado a partir dos spawns legacy berries:mush1/2.",
+            "visual": {
+              "x": 32.81,
+              "y": 36.11
+            }
+          }
+        ],
+        "enemies": [
+          {
+            "iid": "AT-014_enemies_capivara_1",
+            "status": "existing",
+            "definitionId": "capybara2",
+            "name": "Capivara",
+            "quantity": 2,
+            "properties": {
+              "respawn": "normal",
+              "aggressive": true,
+              "patrol": "",
+              "condition": "sempre"
+            },
+            "notes": "",
+            "visual": {
+              "x": 76.56,
+              "y": 41.67
+            }
+          }
+        ],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-020": {
+      "code": "AT-020",
+      "x": 3,
+      "y": 19,
+      "name": "Trilha das Flores",
+      "area": "atenaria020",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-021": {
+      "code": "AT-021",
+      "x": 4,
+      "y": 19,
+      "name": "Baixio Verde",
+      "area": "atenaria021",
+      "type": "overworld",
+      "region": "Atenaria",
+      "regionKey": "atenaria",
+      "terrain": "fields",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-032": {
+      "code": "AT-032",
+      "x": 5,
+      "y": 19,
+      "name": "Base da Serra",
+      "area": "altaria032",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-033": {
+      "code": "AT-033",
+      "x": 6,
+      "y": 19,
+      "name": "Rampa de Lajes",
+      "area": "altaria033",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-034": {
+      "code": "AT-034",
+      "x": 7,
+      "y": 19,
+      "name": "Clareira Alpina",
+      "area": "altaria034",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-035": {
+      "code": "AT-035",
+      "x": 8,
+      "y": 19,
+      "name": "Costão do Norte",
+      "area": "altaria035",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-036": {
+      "code": "AT-036",
+      "x": 9,
+      "y": 19,
+      "name": "Varanda de Pedra",
+      "area": "altaria036",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-037": {
+      "code": "AT-037",
+      "x": 6,
+      "y": 20,
+      "name": "Desvio dos Pinheiros",
+      "area": "altaria037",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-038": {
+      "code": "AT-038",
+      "x": 8,
+      "y": 20,
+      "name": "Passo Oriental",
+      "area": "altaria038",
+      "type": "overworld",
+      "region": "Altaria",
+      "regionKey": "altaria",
+      "terrain": "mountains",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-114": {
+      "code": "AT-114",
+      "x": 5,
+      "y": 13,
+      "name": "Portal da Neve",
+      "area": "invernia114",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-115": {
+      "code": "AT-115",
+      "x": 6,
+      "y": 13,
+      "name": "Planície Branca",
+      "area": "invernia115",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-116": {
+      "code": "AT-116",
+      "x": 7,
+      "y": 13,
+      "name": "Trilha Congelada",
+      "area": "invernia116",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-117": {
+      "code": "AT-117",
+      "x": 8,
+      "y": 13,
+      "name": "Bosque de Gelo",
+      "area": "invernia117",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-118": {
+      "code": "AT-118",
+      "x": 6,
+      "y": 14,
+      "name": "Lago Cristalino",
+      "area": "invernia118",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-119": {
+      "code": "AT-119",
+      "x": 7,
+      "y": 14,
+      "name": "Campo de Geada",
+      "area": "invernia119",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-120": {
+      "code": "AT-120",
+      "x": 8,
+      "y": 14,
+      "name": "Passagem Nevada",
+      "area": "invernia120",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-121": {
+      "code": "AT-121",
+      "x": 9,
+      "y": 14,
+      "name": "Pinheiral Gelado",
+      "area": "invernia121",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-122": {
+      "code": "AT-122",
+      "x": 5,
+      "y": 15,
+      "name": "Vale Azul",
+      "area": "invernia122",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-123": {
+      "code": "AT-123",
+      "x": 6,
+      "y": 15,
+      "name": "Escarpa de Gelo",
+      "area": "invernia123",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-124": {
+      "code": "AT-124",
+      "x": 7,
+      "y": 15,
+      "name": "Nevasca Baixa",
+      "area": "invernia124",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-125": {
+      "code": "AT-125",
+      "x": 8,
+      "y": 15,
+      "name": "Clareira Boreal",
+      "area": "invernia125",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-126": {
+      "code": "AT-126",
+      "x": 9,
+      "y": 15,
+      "name": "Cristas Nevadas",
+      "area": "invernia126",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-127": {
+      "code": "AT-127",
+      "x": 6,
+      "y": 16,
+      "name": "Garganta Glacial",
+      "area": "invernia127",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    },
+    "AT-128": {
+      "code": "AT-128",
+      "x": 8,
+      "y": 16,
+      "name": "Fronteira do Gelo",
+      "area": "invernia128",
+      "type": "overworld",
+      "region": "Invérnia",
+      "regionKey": "invernia",
+      "terrain": "snow",
+      "npcs": "",
+      "resources": "",
+      "enemies": "",
+      "buildings": "",
+      "mechanics": "",
+      "notes": "",
+      "entities": {
+        "npcs": [],
+        "resources": [],
+        "enemies": [],
+        "buildings": []
+      },
+      "designControl": {
+        "freedom": "structured",
+        "restrictions": {
+          "camera": false,
+          "connections": false,
+          "npcs": false,
+          "quests": false,
+          "difficulty": false,
+          "layout": false
+        },
+        "other": ""
+      },
+      "interiors": [],
+      "blueprint": {
+        "background": "auto",
+        "notes": ""
+      }
+    }
+  },
+  "libraries": {
+    "npcs": [
+      {
+        "id": "elder",
+        "name": "Anciã Mira",
+        "label": "🧓 Anciã Mira",
+        "detail": "elder · área atual: village2"
+      },
+      {
+        "id": "farmer",
+        "name": "Joaquim",
+        "label": "👨‍🌾 Joaquim",
+        "detail": "farmer · área atual: village"
+      },
+      {
+        "id": "shop",
+        "name": "Lojista",
+        "label": "🧑‍💼 Lojista",
+        "detail": "shop · área atual: shopInterior"
+      },
+      {
+        "id": "heitor",
+        "name": "Heitor",
+        "label": "🧒 Heitor",
+        "detail": "heitor · área atual: village"
+      },
+      {
+        "id": "clarisse",
+        "name": "Clarisse",
+        "label": "👧 Clarisse",
+        "detail": "clarisse · área atual: entrance"
+      },
+      {
+        "id": "jordan",
+        "name": "Jordan",
+        "label": "👴 Jordan",
+        "detail": "jordan · área atual: entrance"
+      },
+      {
+        "id": "gatekeeper",
+        "name": "Geraldo",
+        "label": "🧙‍♂️ Geraldo",
+        "detail": "gatekeeper · área atual: witchyard"
+      },
+      {
+        "id": "witch",
+        "name": "Bruxa Selene",
+        "label": "🧙‍♀️ Bruxa Selene",
+        "detail": "witch · área atual: witchyard"
+      },
+      {
+        "id": "alfredo",
+        "name": "Alfredo",
+        "label": "👨‍🌾 Alfredo",
+        "detail": "alfredo · área atual: village2"
+      },
+      {
+        "id": "carlos",
+        "name": "Carlos",
+        "label": "🧑‍💼 Carlos",
+        "detail": "carlos · área atual: bank"
+      },
+      {
+        "id": "cecilia",
+        "name": "Cecília",
+        "label": "🧑‍💼 Cecília",
+        "detail": "cecilia · área atual: bank"
+      },
+      {
+        "id": "clovis",
+        "name": "Clóvis",
+        "label": "🧑‍💼 Clóvis",
+        "detail": "clovis · área atual: bank"
+      },
+      {
+        "id": "gnome",
+        "name": "Gnomo Júlio",
+        "label": "🧙‍♂️ Gnomo Júlio",
+        "detail": "gnome · área atual: mushroomforest"
+      },
+      {
+        "id": "elis",
+        "name": "Elis",
+        "label": "🧪 Elis",
+        "detail": "Alquimista · Cabana da Alquimista · loja de frascos"
+      }
+    ],
+    "resources": [
+      {
+        "id": "tree:iron",
+        "name": "Carvalho",
+        "label": "🌳 Carvalho",
+        "detail": "Woodcutting · material iron · drop Lenha de Carvalho"
+      },
+      {
+        "id": "tree:mithril",
+        "name": "Salgueiro Arcano",
+        "label": "🌳 Salgueiro Arcano",
+        "detail": "Woodcutting · material mithril · drop Lenha de Salgueiro Arcano"
+      },
+      {
+        "id": "tree:platinum",
+        "name": "Coqueiro",
+        "label": "🌳 Coqueiro",
+        "detail": "Woodcutting · material platinum · drop Lenha de Coqueiro"
+      },
+      {
+        "id": "tree:silver",
+        "name": "Pinheiro Gelado",
+        "label": "🌳 Pinheiro Gelado",
+        "detail": "Woodcutting · material silver · drop Lenha de Pinheiro Gelado"
+      },
+      {
+        "id": "tree:gold",
+        "name": "Cedro Dourado",
+        "label": "🌳 Cedro Dourado",
+        "detail": "Woodcutting · material gold · drop Lenha de Cedro Dourado"
+      },
+      {
+        "id": "tree:ruby",
+        "name": "Bordo Rubro",
+        "label": "🌳 Bordo Rubro",
+        "detail": "Woodcutting · material ruby · drop Lenha de Bordo Rubro"
+      },
+      {
+        "id": "tree:diamond",
+        "name": "Árvore de Cristal",
+        "label": "🌳 Árvore de Cristal",
+        "detail": "Woodcutting · material diamond · drop Lenha de Árvore de Cristal"
+      },
+      {
+        "id": "tree:onyx",
+        "name": "Ébano Sombrio",
+        "label": "🌳 Ébano Sombrio",
+        "detail": "Woodcutting · material onyx · drop Lenha de Ébano Sombrio"
+      },
+      {
+        "id": "ore:iron",
+        "name": "Iron",
+        "label": "⛏️ Minério: iron",
+        "detail": "Mining · tier/material iron"
+      },
+      {
+        "id": "ore:mithril",
+        "name": "Mithril",
+        "label": "⛏️ Minério: mithril",
+        "detail": "Mining · tier/material mithril"
+      },
+      {
+        "id": "ore:platinum",
+        "name": "Platinum",
+        "label": "⛏️ Minério: platinum",
+        "detail": "Mining · tier/material platinum"
+      },
+      {
+        "id": "ore:silver",
+        "name": "Silver",
+        "label": "⛏️ Minério: silver",
+        "detail": "Mining · tier/material silver"
+      },
+      {
+        "id": "ore:gold",
+        "name": "Gold",
+        "label": "⛏️ Minério: gold",
+        "detail": "Mining · tier/material gold"
+      },
+      {
+        "id": "ore:ruby",
+        "name": "Ruby",
+        "label": "⛏️ Minério: ruby",
+        "detail": "Mining · tier/material ruby"
+      },
+      {
+        "id": "ore:diamond",
+        "name": "Diamond",
+        "label": "⛏️ Minério: diamond",
+        "detail": "Mining · tier/material diamond"
+      },
+      {
+        "id": "ore:onyx",
+        "name": "Onyx",
+        "label": "⛏️ Minério: onyx",
+        "detail": "Mining · tier/material onyx"
+      },
+      {
+        "id": "berry:raspberry",
+        "name": "Framboesa",
+        "label": "🫐 Framboesa",
+        "detail": "Coleta em arbusto"
+      },
+      {
+        "id": "berry:blueRaspberry",
+        "name": "Framboesa Azul",
+        "label": "🔵 Framboesa Azul",
+        "detail": "Coleta rara em arbusto"
+      },
+      {
+        "id": "berry:mushroom",
+        "name": "Cogumelo",
+        "label": "🍄 Cogumelo",
+        "detail": "Coleta em floresta"
+      },
+      {
+        "id": "chest",
+        "name": "Baú",
+        "label": "🧰 Baú / recompensa",
+        "detail": "Recurso interagível com loot"
+      },
+      {
+        "id": "fishing-water",
+        "name": "Ponto de Pesca",
+        "label": "🎣 Ponto de Pesca",
+        "detail": "Água pescável / ecossistema local"
+      },
+      {
+        "id": "farm-plot",
+        "name": "Plantio",
+        "label": "🌱 Canteiro de Plantação",
+        "detail": "Plantio, fertilizante e colheita"
+      },
+      {
+        "id": "sunflower",
+        "name": "Girassol",
+        "label": "🌻 Girassol",
+        "detail": "Coletável em AT-022 · reagente da Poção de Ataque"
+      }
+    ],
+    "enemies": [
+      {
+        "id": "s1",
+        "name": "Slime do Musgo",
+        "label": "🟢 Slime do Musgo",
+        "detail": "s1 · família slime"
+      },
+      {
+        "id": "s2",
+        "name": "Slime Azul",
+        "label": "🔵 Slime Azul",
+        "detail": "s2 · família slime"
+      },
+      {
+        "id": "s3",
+        "name": "Slime Rubro",
+        "label": "🔴 Slime Rubro",
+        "detail": "s3 · família slime"
+      },
+      {
+        "id": "s4",
+        "name": "Slime Antigo",
+        "label": "🟣 Slime Antigo",
+        "detail": "s4 · família slime"
+      },
+      {
+        "id": "chicken3",
+        "name": "Galinha",
+        "label": "🐔 Galinha",
+        "detail": "chicken3"
+      },
+      {
+        "id": "b1",
+        "name": "Morcego Sombrio",
+        "label": "🦇 Morcego Sombrio",
+        "detail": "b1"
+      },
+      {
+        "id": "b2",
+        "name": "Morcego da Caverna",
+        "label": "🦇 Morcego da Caverna",
+        "detail": "b2"
+      },
+      {
+        "id": "b3",
+        "name": "Morcego Feroz",
+        "label": "🦇 Morcego Feroz",
+        "detail": "b3"
+      },
+      {
+        "id": "b4",
+        "name": "Morcego Cinzento",
+        "label": "🦇 Morcego Cinzento",
+        "detail": "b4"
+      },
+      {
+        "id": "caveWolf1",
+        "name": "Lobo da Caverna",
+        "label": "🐺 Lobo da Caverna",
+        "detail": "caveWolf1"
+      },
+      {
+        "id": "caveWolf2",
+        "name": "Lobo Cinzento",
+        "label": "🐺 Lobo Cinzento",
+        "detail": "caveWolf2"
+      },
+      {
+        "id": "wolfGuard",
+        "name": "Lobo Guardião",
+        "label": "🐺 Lobo Guardião",
+        "detail": "wolfGuard"
+      },
+      {
+        "id": "caveWolf3",
+        "name": "Lobo Feroz",
+        "label": "🐺 Lobo Feroz",
+        "detail": "caveWolf3"
+      },
+      {
+        "id": "caveWolf4",
+        "name": "Lobo Sombrio",
+        "label": "🐺 Lobo Sombrio",
+        "detail": "caveWolf4"
+      },
+      {
+        "id": "wolf",
+        "name": "Lobo Gigante",
+        "label": "🐺 Lobo Gigante",
+        "detail": "wolf · chefe"
+      },
+      {
+        "id": "rat2",
+        "name": "Rato Gigante",
+        "label": "🐀 Rato Gigante",
+        "detail": "rat2"
+      },
+      {
+        "id": "capybara2",
+        "name": "Capivara",
+        "label": "🟤 Capivara",
+        "detail": "capybara2"
+      },
+      {
+        "id": "spider1",
+        "name": "Aranha Sombria",
+        "label": "🕷️ Aranha Sombria",
+        "detail": "spider1"
+      },
+      {
+        "id": "spider2",
+        "name": "Aranha da Névoa",
+        "label": "🕷️ Aranha da Névoa",
+        "detail": "spider2"
+      },
+      {
+        "id": "spider3",
+        "name": "Aranha Espinhosa",
+        "label": "🕷️ Aranha Espinhosa",
+        "detail": "spider3"
+      },
+      {
+        "id": "spider4",
+        "name": "Aranha Venenosa",
+        "label": "🕷️ Aranha Venenosa",
+        "detail": "spider4"
+      },
+      {
+        "id": "giantSpider",
+        "name": "Aranha Gigante",
+        "label": "🕷️ Aranha Gigante",
+        "detail": "giantSpider · chefe"
+      },
+      {
+        "id": "dragon",
+        "name": "Dragão Ancestral",
+        "label": "🐉 Dragão Ancestral",
+        "detail": "dragon · chefe"
+      },
+      {
+        "id": "goat",
+        "name": "Bode",
+        "label": "🐐 Bode",
+        "detail": "goat"
+      }
+    ],
+    "buildings": [
+      {
+        "id": "player-house",
+        "name": "Casa do Jogador",
+        "label": "🏠 Casa do Jogador",
+        "detail": "Interior + porta/conexão"
+      },
+      {
+        "id": "smithy",
+        "name": "Ferraria",
+        "label": "🔥 Ferraria",
+        "detail": "Forja, bigorna e crafting de equipamento"
+      },
+      {
+        "id": "bank",
+        "name": "Banco",
+        "label": "🏦 Banco",
+        "detail": "Armazenamento + NPCs banqueiros"
+      },
+      {
+        "id": "shop",
+        "name": "Loja",
+        "label": "🏪 Loja",
+        "detail": "Compra e venda"
+      },
+      {
+        "id": "cave-entrance",
+        "name": "Entrada de Caverna",
+        "label": "🪨 Entrada de Caverna",
+        "detail": "Porta/transição para dungeon"
+      },
+      {
+        "id": "house",
+        "name": "Casa genérica",
+        "label": "🏡 Casa / construção",
+        "detail": "Construção decorativa ou funcional"
+      },
+      {
+        "id": "bridge",
+        "name": "Ponte",
+        "label": "🌉 Ponte",
+        "detail": "Passagem sobre terreno/água"
+      },
+      {
+        "id": "fence",
+        "name": "Cerca",
+        "label": "🪵 Cerca",
+        "detail": "Barreira/limite de área"
+      },
+      {
+        "id": "dock",
+        "name": "Cais",
+        "label": "⚓ Cais",
+        "detail": "Construção costeira / pesca"
+      },
+      {
+        "id": "elis-cabin",
+        "name": "Cabana da Alquimista",
+        "label": "🧪 Cabana da Alquimista",
+        "detail": "Interior vinculado à AT-022 · Elis + decoração de alquimia"
+      }
+    ],
+    "mechanics": [
+      {
+        "id": "screen-transition",
+        "name": "Transição por borda",
+        "label": "⚙️ Transição por borda",
+        "detail": "Conecta telas por N/S/L/O; adjacência do Editor gera a proposta de conexão.",
+        "file": "js/main.js · handleEdgeTransition"
+      },
+      {
+        "id": "npc-dialogue",
+        "name": "NPC + diálogo",
+        "label": "⚙️ NPC + diálogo",
+        "detail": "NPC interagível com fala, estado e possíveis quests.",
+        "file": "data/content.js · js/main.js"
+      },
+      {
+        "id": "quest-marker",
+        "name": "Marcador de Quest",
+        "label": "⚙️ Marcador de Quest",
+        "detail": "Estado visual verde/amarelo/vermelho com exclamação branca.",
+        "file": "js/quest.js · js/main.js"
+      },
+      {
+        "id": "cutscene",
+        "name": "Cutscene scriptada",
+        "label": "⚙️ Cutscene scriptada",
+        "detail": "Sequência de diálogo/ação; câmera só faz zoom/follow quando explicitamente solicitado.",
+        "file": "js/main.js · camera polish"
+      },
+      {
+        "id": "combat",
+        "name": "Combate",
+        "label": "⚙️ Combate",
+        "detail": "Inimigos, drops, XP, resistências, fraquezas e bosses.",
+        "file": "js/battle.js · data/content.js"
+      },
+      {
+        "id": "mining",
+        "name": "Mineração",
+        "label": "⚙️ Mineração",
+        "detail": "Nós de minério por material/tier, ferramenta, XP e respawn.",
+        "file": "js/gathering.js · data/resources.js"
+      },
+      {
+        "id": "woodcutting",
+        "name": "Corte de árvores",
+        "label": "⚙️ Corte de árvores",
+        "detail": "Árvores coletáveis, ferramenta, XP, stump e respawn.",
+        "file": "js/gathering.js · data/resources.js"
+      },
+      {
+        "id": "fishing",
+        "name": "Pesca",
+        "label": "⚙️ Pesca",
+        "detail": "Pontos de água, iscas, peixes, clima e raridade.",
+        "file": "js/main.js · data/fish.js"
+      },
+      {
+        "id": "farming",
+        "name": "Plantação",
+        "label": "⚙️ Plantação",
+        "detail": "Canteiro, sementes, fertilizantes, crescimento e colheita.",
+        "file": "js/main.js"
+      },
+      {
+        "id": "crafting",
+        "name": "Crafting",
+        "label": "⚙️ Crafting",
+        "detail": "Receitas, produção, filas/tempo e skill checks.",
+        "file": "js/crafting.js · data/recipes.js"
+      },
+      {
+        "id": "smithing",
+        "name": "Ferraria",
+        "label": "⚙️ Ferraria",
+        "detail": "Forja/bigorna, barras e criação de equipamento.",
+        "file": "js/main.js · data/equipment.js"
+      },
+      {
+        "id": "cooking",
+        "name": "Culinária",
+        "label": "⚙️ Culinária",
+        "detail": "Fogão/fogueira, comida, cura e buffs.",
+        "file": "js/main.js"
+      },
+      {
+        "id": "bank",
+        "name": "Banco",
+        "label": "⚙️ Banco",
+        "detail": "Depósito, retirada e capacidade de armazenamento.",
+        "file": "js/main.js"
+      },
+      {
+        "id": "shop",
+        "name": "Loja",
+        "label": "⚙️ Loja",
+        "detail": "Compra/venda e economia.",
+        "file": "data/economy.js · js/main.js"
+      },
+      {
+        "id": "chest",
+        "name": "Baú / recompensa",
+        "label": "⚙️ Baú / recompensa",
+        "detail": "Interação de loot, requisitos e proteção por inimigo.",
+        "file": "data/content.js"
+      },
+      {
+        "id": "equipment",
+        "name": "Equipamentos",
+        "label": "⚙️ Equipamentos",
+        "detail": "Slots, stats, equip/unequip e sprites de itens.",
+        "file": "data/equipment.js · js/main.js"
+      },
+      {
+        "id": "skill-check",
+        "name": "Skill Check",
+        "label": "⚙️ Skill Check",
+        "detail": "Requisitos de skill para rotas, quests e conteúdo.",
+        "file": "data/quest-skill-checks.js"
+      },
+      {
+        "id": "world-project",
+        "name": "Projeto de Mundo",
+        "label": "⚙️ Projeto de Mundo",
+        "detail": "Projetos persistentes que liberam conveniências/efeitos.",
+        "file": "data/world-projects.js"
+      },
+      {
+        "id": "random-encounter",
+        "name": "Encontro Aleatório",
+        "label": "⚙️ Encontro Aleatório",
+        "detail": "Combate/evento acionado fora de spawn fixo.",
+        "file": "js/main.js"
+      },
+      {
+        "id": "weather",
+        "name": "Clima",
+        "label": "⚙️ Clima",
+        "detail": "Estados climáticos usados por pesca/ambiente.",
+        "file": "js/main.js"
+      },
+      {
+        "id": "door-interior",
+        "name": "Porta / Interior",
+        "label": "⚙️ Porta / Interior",
+        "detail": "Conexão explícita para tela interior sem tile próprio no overworld.",
+        "file": "data/map-codes.js · data/content.js"
+      },
+      {
+        "id": "npc-context-menu",
+        "name": "Menu contextual de NPC",
+        "label": "⚙️ Menu contextual de NPC",
+        "detail": "Botão direito: Falar / Abrir Loja (quando houver) / Cancelar.",
+        "file": "js/main.js"
+      },
+      {
+        "id": "attack-potion",
+        "name": "Poção de Ataque",
+        "label": "⚙️ Poção de Ataque",
+        "detail": "Frasco Vazio → água → Frasco com Água + Girassol; Alquimia 1; +5% dano por 10 ataques.",
+        "file": "js/main.js · js/inventory.js"
+      }
+    ]
+  },
+  "connectionMeta": {},
+  "runtimeLibraryGeneratedAt": "2026-08-17T00:14:19.932Z",
+  "templates": []
+};</script><script>(()=>{'use strict';
+const S=window.WORLD_EDITOR_SEED, clone=o=>JSON.parse(JSON.stringify(o));
+const BASE=clone(S.screens), KEY='terropia-world-editor-iphone-v1', UIKEY='terropia-world-editor-iphone-ui-v2';
+const regionCode=Object.fromEntries(S.regions.map(r=>[r.name,r.code]));
+let state={schemaVersion:4,editorVersion:'v00186-mobile',sourceWorldMap:S.sourceWorldMap,revision:0,updatedAt:null,columns:S.columns,rows:S.rows,screens:clone(S.screens),connectionMeta:clone(S.connectionMeta||{}),templates:clone(S.templates||[])};
+let selected=null,draft=null,activeTab='basic',regionFilter='all',changedOnly=false,zoom=48,dirty=false,initialFramed=false,suppressTap=false,peekTimer=null,isCreating=false;
+const GAP=11, PAD=96, EXTEND=5, MIN_ZOOM=30, MAX_ZOOM=82;
+let gesture={mode:null,startX:0,startY:0,startLeft:0,startTop:0,startDist:0,startZoom:0,anchorGX:0,anchorGY:0,raf:0,pendingZoom:0,pendingFX:0,pendingFY:0};
+const $=q=>document.querySelector(q), $$=q=>[...document.querySelectorAll(q)];
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.screens)state={...state,...x}}catch(e){}try{const u=JSON.parse(localStorage.getItem(UIKEY));if(u){regionFilter=u.regionFilter||'all';zoom=Number(u.zoom)||48}}catch(e){}}
+function saveUI(){localStorage.setItem(UIKEY,JSON.stringify({regionFilter,zoom}))}
+function persist(){state.updatedAt=new Date().toISOString();localStorage.setItem(KEY,JSON.stringify(state));updateStatus()}
+function norm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()}
+function changed(code){return !BASE[code]||JSON.stringify(state.screens[code])!==JSON.stringify(BASE[code])}
+function changedCodes(){return Object.keys(state.screens).filter(changed)}
+function updateStatus(){const n=changedCodes().length;$('#status').textContent=n?`${n} alterada${n>1?'s':''}`:'Sem alterações';$('#status').classList.toggle('changed',n>0);$('#changedBadge').hidden=!n;$('#changedBadge').textContent=n;$('#navChanged').classList.toggle('active',changedOnly)}
+function escape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderFilters(){const all=[{key:'all',name:'Todas'},...S.regions.map(r=>({key:r.code,name:r.name}))];$('#filters').innerHTML=all.map(r=>`<button class="chip${regionFilter===r.key?' active':''}" data-region="${r.key}">${escape(r.name)}</button>`).join('');$$('.chip').forEach(b=>b.onclick=()=>{regionFilter=b.dataset.region;saveUI();renderFilters();renderMap();requestAnimationFrame(()=>frameVisible(false))})}
+function visibleScreens(){const q=norm($('#search').value);return Object.entries(state.screens).filter(([code,s])=>{if(changedOnly&&!changed(code))return false;if(regionFilter!=='all'&&regionCode[s.region]!==regionFilter)return false;if(q&&!norm(`${code} ${s.name} ${s.region} ${s.area}`).includes(q))return false;return true})}
+function slotRegionAt(x,y){const row=(y>=0?S.terrainRows?.[y]:null)||'';const rc=x>=0?(row[x]||'~'):'~',direct=S.regions.find(r=>r.code===rc);if(direct)return direct;let nearest=null,best=Infinity;for(const sc of Object.values(state.screens)){const d=Math.hypot(Number(sc.x)-x,Number(sc.y)-y);if(d<best){const r=S.regions.find(rr=>rr.name===sc.region);if(r){nearest=r;best=d}}}return nearest}
+function occupiedAt(x,y){return Object.values(state.screens).some(s=>Number(s.x)===x&&Number(s.y)===y)}
+function worldBounds(){const a=Object.entries(state.screens);if(!a.length)return{minX:0,maxX:S.columns-1,minY:0,maxY:S.rows-1};return boundsOf(a)}
+function gridBounds(){const b=worldBounds();return{minX:b.minX-EXTEND,maxX:b.maxX+EXTEND,minY:b.minY-EXTEND,maxY:b.maxY+EXTEND}}
+function gridPos(x,y,b){return{col:Number(x)-b.minX+1,row:Number(y)-b.minY+1}}
+function renderMap(keepScroll=false){const wrap=$('#mapwrap'),old={x:wrap.scrollLeft,y:wrap.scrollTop},gb=gridBounds();document.documentElement.style.setProperty('--cell',zoom+'px');document.documentElement.style.setProperty('--grid-breath',PAD+'px');const grid=$('#grid');grid.style.setProperty('--grid-cols',gb.maxX-gb.minX+1);grid.style.setProperty('--grid-rows',gb.maxY-gb.minY+1);grid.classList.toggle('names',zoom>=58);const entries=visibleScreens(),cells=[];for(const [code,s] of entries){const r=regionCode[s.region]||'',p=gridPos(s.x,s.y,gb);cells.push(`<button class="cell${selected===code?' sel':''}" data-code="${escape(code)}" data-r="${r}" style="grid-column:${p.col};grid-row:${p.row}" aria-label="${escape(code+' '+s.name)}"><span class="code">${escape(code.replace('AT-',''))}</span><span class="cname">${escape(s.name)}</span>${changed(code)?'<i class="dot"></i>':''}</button>`)}const q=norm($('#search').value);if(!q&&!changedOnly){for(let y=gb.minY;y<=gb.maxY;y++)for(let x=gb.minX;x<=gb.maxX;x++){if(occupiedAt(x,y))continue;const reg=slotRegionAt(x,y);if(!reg)continue;if(regionFilter!=='all'&&reg.code!==regionFilter)continue;const p=gridPos(x,y,gb);cells.push(`<button class="slot" data-x="${x}" data-y="${y}" data-r="${reg.code}" style="grid-column:${p.col};grid-row:${p.row}" aria-label="Criar nova tela em ${escape(reg.name)}, posição ${x}, ${y}"><span>＋</span></button>`)}}if(!cells.length)cells.push('<div class="emptyMap"><div><b>Nenhuma tela encontrada</b><br><small>Ajuste a busca ou os filtros.</small></div></div>');grid.innerHTML=cells.join('');$('#mapInfo').textContent=`${entries.length} tela${entries.length!==1?'s':''} · margem +${EXTEND}${changedOnly?' · somente alteradas':' · + cria nova'}`;$('#mapTitle').textContent=regionFilter==='all'?'Mapa do mundo':(S.regions.find(r=>r.code===regionFilter)?.name||'Mapa');$('#searchbox').classList.toggle('has',!!$('#search').value);updateStatus();requestAnimationFrame(()=>{if(keepScroll){wrap.scrollLeft=old.x;wrap.scrollTop=old.y;clampScroll()}else if(!initialFramed){frameGrid(false);initialFramed=true;showMapHint()}})}
+function entityLines(s,cat){return (s.entities?.[cat]||[]).map(e=>`${e.name||'Sem nome'}${e.definitionId?` [${e.definitionId}]`:''}${Number(e.quantity||1)>1?` ×${e.quantity}`:''}`).join('\n')}
+function defaultProps(cat){return cat==='npcs'?{role:'',behavior:'parado',interactions:{talk:true,shop:false,quest:false,combat:false},shopId:'',condition:'sempre'}:cat==='resources'?{distribution:'pontos distintos',respawn:'normal',gathering:'manual',requirement:'nenhum',persistent:false}:cat==='enemies'?{respawn:'normal',aggressive:true,patrol:'',condition:'sempre'}:{enterable:false,interiorId:'',collision:true,door:true,function:''}}
+function parseLine(line){line=line.trim();if(!line)return null;let qty=1;const qm=line.match(/\s*[×x]\s*(\d+)\s*$/i);if(qm){qty=Math.max(1,Number(qm[1]));line=line.slice(0,qm.index).trim()}const im=line.match(/\s*\[([^\]]+)\]\s*$/);let id='';if(im){id=im[1].trim();line=line.slice(0,im.index).trim()}return{name:line||id,definitionId:id,quantity:qty}}
+function slug(s){return norm(s).replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'').slice(0,36)||'item'}
+function reconcile(old,text,cat,code){const pool=[...(old||[])],used=new Set();return String(text||'').split('\n').map(parseLine).filter(Boolean).map((p,i)=>{let idx=pool.findIndex((e,j)=>!used.has(j)&&((p.definitionId&&e.definitionId===p.definitionId)||norm(e.name)===norm(p.name)));let e=idx>=0?clone(pool[idx]):{iid:`${code}_${cat}_${Date.now().toString(36)}_${i}`,status:p.definitionId?'existing':'new',definitionId:p.definitionId||`new_${slug(p.name)}_${i+1}`,name:p.name,quantity:1,layerId:'base',properties:defaultProps(cat),notes:'',visual:{x:18+((i*23)%65),y:25+((i*17)%55)}};if(idx>=0)used.add(idx);e.name=p.name;e.quantity=p.quantity;if(p.definitionId)e.definitionId=p.definitionId;return e})}
+function countLines(id){return String($('#'+id).value||'').split('\n').filter(x=>x.trim()).length}
+function renderQuickStats(){if(!draft)return;$('#quickstats').innerHTML=[['NPCs',countLines('npcs')],['Recursos',countLines('resources')],['Inimigos',countLines('enemies')],['Construções',countLines('buildings')]].map(([n,v])=>`<div class="qstat"><b>${v}</b><small>${n}</small></div>`).join('')}
+function markDirty(){if(!draft)return;dirty=true;$('#dirty').classList.add('on');renderQuickStats()}
+function hidePeek(keepSelection=true){clearTimeout(peekTimer);const p=$('#peek');p.classList.add('fading');setTimeout(()=>{p.classList.remove('show','fading')},180);if(!keepSelection){selected=null;renderMap(true)}}
+function schedulePeekHide(){clearTimeout(peekTimer);peekTimer=setTimeout(()=>hidePeek(true),4200)}
+function showPeek(){if(!selected||!state.screens[selected])return;const s=state.screens[selected];$('#peekTitle').textContent=`${selected} · ${s.name}`;$('#peekMeta').textContent=`${s.region||''} · ${s.type||'overworld'}${changed(selected)?' · alterada':''}`;$('#peek').classList.remove('fading');$('#peek').classList.add('show');schedulePeekHide()}
+function selectScreen(code){selected=code;showPeek();renderMap(true);requestAnimationFrame(()=>centerSelected('nearest'))}
+function clearSelection(){clearTimeout(peekTimer);selected=null;$('#peek').classList.remove('show','fading');renderMap(true)}
+function nextScreenCode(){let max=0;for(const c of Object.keys(state.screens)){const m=c.match(/AT-(\d+)/);if(m)max=Math.max(max,Number(m[1]))}return `AT-${String(max+1).padStart(3,'0')}`}
+function fillEditor(code,obj,creating=false){selected=code;draft=clone(obj);isCreating=creating;dirty=creating;$('#dirty').classList.toggle('on',creating);$('#title').textContent=`${creating?'Nova tela · ':''}${code} · ${draft.name}`;$('#meta').textContent=`${draft.region||''} · ${draft.type||'overworld'}${creating?' · não salva':''}`;$('#name').value=draft.name||'';$('#region').value=draft.region||'Atenaria';$('#type').value=draft.type||'overworld';$('#area').value=draft.area||'';for(const cat of ['npcs','resources','enemies','buildings'])$('#'+cat).value=entityLines(draft,cat);$('#mechanics').value=draft.mechanics||'';$('#notes').value=draft.notes||'';renderQuickStats();setTab('basic');$('#sheet').classList.add('open')}
+function openScreen(code){if(!state.screens[code])return;fillEditor(code,state.screens[code],false);renderMap(true)}
+function openNewScreen(x,y){if(occupiedAt(x,y))return;const reg=slotRegionAt(x,y);if(!reg)return;clearTimeout(peekTimer);$('#peek').classList.remove('show','fading');const code=nextScreenCode(),obj={code,x,y,name:'Nova tela',area:`${reg.key}${code.replace('AT-','')}`,type:'overworld',region:reg.name,regionKey:reg.key,terrain:reg.terrain,npcs:'',resources:'',enemies:'',buildings:'',mechanics:'',notes:'',entities:{npcs:[],resources:[],enemies:[],buildings:[]},designControl:{freedom:'structured',restrictions:{camera:false,connections:false,npcs:false,quests:false,difficulty:false,layout:false},other:''},interiors:[],blueprint:{background:'auto',notes:''}};fillEditor(code,obj,true);toast('Nova tela — salve para criar')}
+function setTab(tab){activeTab=tab;$$('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));$$('.pane').forEach(p=>p.classList.toggle('active',p.dataset.pane===tab))}
+function closeSheet(force=false){if(dirty&&!force&&!confirm(isCreating?'Descartar esta nova tela?':'Você tem alterações não salvas nesta tela. Fechar mesmo assim?'))return;$('#sheet').classList.remove('open');const wasCreating=isCreating;draft=null;dirty=false;isCreating=false;$('#dirty').classList.remove('on');if(!wasCreating&&selected&&state.screens[selected])selectScreen(selected);else{selected=null;renderMap(true)}}
+function saveDraft(){if(!draft||!selected)return;draft.code=selected;draft.name=$('#name').value.trim()||draft.name;draft.region=$('#region').value;const reg=S.regions.find(r=>r.name===draft.region);draft.regionKey=reg?.key||norm(draft.region).replace(/[^a-z0-9]+/g,'');draft.terrain=reg?.terrain||draft.terrain;draft.type=$('#type').value;draft.area=$('#area').value.trim();draft.entities=draft.entities||{};for(const cat of ['npcs','resources','enemies','buildings']){draft.entities[cat]=reconcile(draft.entities[cat],$('#'+cat).value,cat,selected);draft[cat]=entityLines(draft,cat)}draft.mechanics=$('#mechanics').value;draft.notes=$('#notes').value;state.screens[selected]=clone(draft);state.revision=(state.revision||0)+1;persist();const created=isCreating;isCreating=false;dirty=false;$('#dirty').classList.remove('on');$('#title').textContent=`${selected} · ${draft.name}`;$('#meta').textContent=`${draft.region} · ${draft.type}`;renderMap(true);toast(created?'Nova tela criada':'Alterações salvas')}
+function resetScreen(){if(!selected)return;if(isCreating){closeSheet();return}if(!BASE[selected]){if(!confirm(`Excluir a nova tela ${selected}?`))return;delete state.screens[selected];state.revision++;persist();selected=null;closeSheet(true);renderMap();toast('Nova tela excluída');return}if(!confirm(`Restaurar ${selected} para a versão original do mapa?`))return;state.screens[selected]=clone(BASE[selected]);state.revision++;persist();openScreen(selected);toast('Tela restaurada')}
+function download(name,obj,type='application/json'){const blob=new Blob([typeof obj==='string'?obj:JSON.stringify(obj,null,2)],{type}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1200)}
+function snapshot(){return {...state,editorVersion:'v00186-mobile',updatedAt:new Date().toISOString()}}
+function changes(){const all=changedCodes(),created=all.filter(c=>!BASE[c]),modified=all.filter(c=>BASE[c]),screenChanges={};for(const c of modified)screenChanges[c]={kind:'modified',before:BASE[c],after:state.screens[c]};for(const c of created)screenChanges[c]={kind:'created',before:null,after:state.screens[c]};return{schemaVersion:4,editorVersion:'v00186-mobile',sourceWorldMap:S.sourceWorldMap,generatedAt:new Date().toISOString(),revision:state.revision,changes:{modified,created,deleted:[]},screenChanges,connectionChanges:{},note:'Gerado pelo Terrópia World Editor Mobile v9. Dados avançados não exibidos foram preservados.'}}
+function exportAll(){download('WORLD_EDITOR_CHANGES.json',changes());setTimeout(()=>download('WORLD_EDITOR_SNAPSHOT.json',snapshot()),350);closeMenu();toast('Arquivos exportados')}
+function exportPrompt(){const c=changedCodes(),md=`# Terrópia — alterações do Editor Mobile\n\nEditor: v00186-mobile\nMapa-base: ${S.sourceWorldMap}\nTelas alteradas: ${c.join(', ')||'nenhuma'}\n\n## Instrução\nUse WORLD_EDITOR_CHANGES.json como fonte das mudanças rápidas feitas no iPhone e WORLD_EDITOR_SNAPSHOT.json para reconciliação completa. Preserve sistemas avançados que não foram modificados.\n`;download('WORLD_EDITOR_PROMPT.md',md,'text/markdown');closeMenu();toast('Prompt exportado')}
+function importFile(file){const r=new FileReader();r.onload=()=>{try{const p=JSON.parse(r.result);if(p.screens)state={...state,...p,screens:p.screens};else if(p.screenChanges){for(const [c,ch] of Object.entries(p.screenChanges))if(ch.after)state.screens[c]=ch.after;state.revision++}else throw Error('Formato não reconhecido');persist();renderMap();toast('Arquivo importado')}catch(e){alert('Não foi possível importar: '+e.message)}};r.readAsText(file)}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),1700)}
+function openMenu(){$('#menu').classList.add('open')} function closeMenu(){$('#menu').classList.remove('open')}
+function gridCoordAt(content,cell){const b=gridBounds();return b.minX+(content-PAD)/(cell+GAP)}
+function contentAtGrid(g,cell){const b=gridBounds();return PAD+(g-b.minX)*(cell+GAP)}
+function maxScroll(){const w=$('#mapwrap'),g=$('#grid');return{x:Math.max(0,g.scrollWidth-w.clientWidth),y:Math.max(0,g.scrollHeight-w.clientHeight)}}
+function clampScroll(){const wrap=$('#mapwrap'),m=maxScroll();wrap.scrollLeft=Math.max(0,Math.min(m.x,wrap.scrollLeft));wrap.scrollTop=Math.max(0,Math.min(m.y,wrap.scrollTop))}
+function applyZoom(n,fx,fy,anchorGX=null,anchorGY=null){const wrap=$('#mapwrap'),old=zoom;n=Math.max(MIN_ZOOM,Math.min(MAX_ZOOM,n));if(Math.abs(n-old)<.05)return;fx=fx??wrap.clientWidth/2;fy=fy??wrap.clientHeight/2;if(anchorGX==null)anchorGX=gridCoordAt(wrap.scrollLeft+fx,old);if(anchorGY==null)anchorGY=gridCoordAt(wrap.scrollTop+fy,old);zoom=n;document.documentElement.style.setProperty('--cell',zoom+'px');$('#grid').classList.toggle('names',zoom>=58);wrap.scrollLeft=contentAtGrid(anchorGX,zoom)-fx;wrap.scrollTop=contentAtGrid(anchorGY,zoom)-fy;clampScroll()}
+function setZoom(n,focus){const wrap=$('#mapwrap'),fx=focus?.x??wrap.clientWidth/2,fy=focus?.y??wrap.clientHeight/2;applyZoom(n,fx,fy);saveUI()}
+function boundsOf(a){if(!a.length)return null;let minX=99,maxX=-1,minY=99,maxY=-1;for(const[,s]of a){minX=Math.min(minX,+s.x);maxX=Math.max(maxX,+s.x);minY=Math.min(minY,+s.y);maxY=Math.max(maxY,+s.y)}return{minX,maxX,minY,maxY}}
+function visibleBounds(){return boundsOf(visibleScreens())}
+function focusBounds(){if(selected&&state.screens[selected]){const reg=state.screens[selected].region;const a=visibleScreens().filter(([,s])=>s.region===reg);if(a.length)return boundsOf(a)}return visibleBounds()}
+function centerSelected(mode='center'){if(!selected||!state.screens[selected])return false;const wrap=$('#mapwrap'),s=state.screens[selected],b=gridBounds(),step=zoom+GAP;const cx=PAD+(s.x-b.minX)*step+zoom/2,cy=PAD+(s.y-b.minY)*step+zoom/2;wrap.scrollTo({left:Math.max(0,cx-wrap.clientWidth/2),top:Math.max(0,cy-wrap.clientHeight/2),behavior:'smooth'});setTimeout(clampScroll,320);return true}
+function frameVisible(adjustZoom=true,preferSelection=true){const wrap=$('#mapwrap'),b=preferSelection?focusBounds():visibleBounds(),gb=gridBounds();if(!b)return;if(adjustZoom){const cols=b.maxX-b.minX+1,rows=b.maxY-b.minY+1;const fitX=(wrap.clientWidth-36-(cols-1)*GAP)/cols,fitY=(wrap.clientHeight-36-(rows-1)*GAP)/rows;const target=Math.max(MIN_ZOOM,Math.min(60,Math.floor(Math.min(fitX,fitY))));if(Math.abs(target-zoom)>=2){zoom=target;saveUI();document.documentElement.style.setProperty('--cell',zoom+'px');$('#grid').classList.toggle('names',zoom>=58)}}requestAnimationFrame(()=>{const step=zoom+GAP,cx=PAD+(((b.minX+b.maxX)/2)-gb.minX)*step+zoom/2,cy=PAD+(((b.minY+b.maxY)/2)-gb.minY)*step+zoom/2;wrap.scrollTo({left:Math.max(0,cx-wrap.clientWidth/2),top:Math.max(0,cy-wrap.clientHeight/2),behavior:'smooth'});setTimeout(clampScroll,320)})}
+function frameGrid(adjustZoom=true){const wrap=$('#mapwrap'),b=gridBounds();if(adjustZoom){const cols=b.maxX-b.minX+1,rows=b.maxY-b.minY+1;const fitX=(wrap.clientWidth-40-(cols-1)*GAP)/cols,fitY=(wrap.clientHeight-40-(rows-1)*GAP)/rows;const target=Math.max(MIN_ZOOM,Math.min(54,Math.floor(Math.min(fitX,fitY))));if(Math.abs(target-zoom)>=2){zoom=target;saveUI();document.documentElement.style.setProperty('--cell',zoom+'px');$('#grid').classList.toggle('names',zoom>=58)}}requestAnimationFrame(()=>{const g=$('#grid');wrap.scrollTo({left:Math.max(0,(g.scrollWidth-wrap.clientWidth)/2),top:Math.max(0,(g.scrollHeight-wrap.clientHeight)/2),behavior:'smooth'});setTimeout(clampScroll,320)})}
+function centerMap(){if(!centerSelected('center'))frameVisible(false)}
+function showMapHint(){const h=$('#maphint');h.classList.add('show');setTimeout(()=>h.classList.remove('show'),2200)}
+function bindGestures(){
+const wrap=$('#mapwrap'),grid=$('#grid');
+let pinch=false,startDist=0,startZoom=zoom,anchorGX=0,anchorGY=0;
+let touchStartX=0,touchStartY=0,touchMoved=false;
+const dist=t=>Math.hypot(t[0].clientX-t[1].clientX,t[0].clientY-t[1].clientY);
+const mid=t=>{const r=wrap.getBoundingClientRect();return{x:(t[0].clientX+t[1].clientX)/2-r.left,y:(t[0].clientY+t[1].clientY)/2-r.top}};
+// Um dedo: NÃO interceptamos o gesto. O Safari faz o scroll nativo do container.
+wrap.addEventListener('touchstart',e=>{
+ if(e.touches.length===1){pinch=false;touchMoved=false;touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY;return}
+ if(e.touches.length===2){
+   e.preventDefault();pinch=true;wrap.classList.add('dragging');
+   startDist=Math.max(1,dist(e.touches));startZoom=zoom;
+   const m=mid(e.touches);anchorGX=gridCoordAt(wrap.scrollLeft+m.x,zoom);anchorGY=gridCoordAt(wrap.scrollTop+m.y,zoom);
+ }
+},{passive:false});
+wrap.addEventListener('touchmove',e=>{
+ if(e.touches.length===1&&!pinch){
+   const dx=e.touches[0].clientX-touchStartX,dy=e.touches[0].clientY-touchStartY;
+   if(Math.hypot(dx,dy)>7)touchMoved=true;
+   return; // scroll nativo do Safari
+ }
+ if(e.touches.length===2){
+   e.preventDefault();
+   if(!pinch){pinch=true;startDist=Math.max(1,dist(e.touches));startZoom=zoom;const m0=mid(e.touches);anchorGX=gridCoordAt(wrap.scrollLeft+m0.x,zoom);anchorGY=gridCoordAt(wrap.scrollTop+m0.y,zoom)}
+   const m=mid(e.touches),ratio=dist(e.touches)/startDist;
+   applyZoom(startZoom*ratio,m.x,m.y,anchorGX,anchorGY);
+ }
+},{passive:false});
+wrap.addEventListener('touchend',e=>{
+ if(e.touches.length<2&&pinch){pinch=false;wrap.classList.remove('dragging');clampScroll();saveUI()}
+},{passive:true});
+wrap.addEventListener('touchcancel',()=>{pinch=false;wrap.classList.remove('dragging')},{passive:true});
+// Clique delegado: toque curto seleciona/cria; arrastar nativamente não deve virar ação.
+grid.addEventListener('click',e=>{
+ if(touchMoved){touchMoved=false;return}
+ const target=e.target.closest('.cell,.slot');if(!target)return;
+ if(target.classList.contains('cell'))selectScreen(target.dataset.code);
+ else openNewScreen(Number(target.dataset.x),Number(target.dataset.y));
+});
+wrap.addEventListener('scroll',()=>{clearTimeout(wrap._saveT);wrap._saveT=setTimeout(()=>{clampScroll();saveUI()},120)},{passive:true});
+}
+load();renderFilters();renderMap();bindGestures();
+$('#search').oninput=()=>{renderMap();requestAnimationFrame(()=>frameVisible(false))};$('#clearSearch').onclick=()=>{$('#search').value='';renderMap();requestAnimationFrame(()=>frameVisible(false));$('#search').focus()};$('#focusMap').onclick=centerMap;$('#fitMap').onclick=()=>frameGrid(true);$('#zoomOut').onclick=()=>setZoom(zoom-6);$('#zoomIn').onclick=()=>setZoom(zoom+6);$('#peekEdit').onclick=()=>{clearTimeout(peekTimer);selected&&openScreen(selected)};$('#peekClose').onclick=()=>hidePeek(true);$('#peek').addEventListener('touchstart',()=>clearTimeout(peekTimer),{passive:true});$('#peek').addEventListener('touchend',schedulePeekHide,{passive:true});
+$('#close').onclick=()=>closeSheet();$$('.tabs button').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));$('#save').onclick=saveDraft;$('#reset').onclick=resetScreen;
+['name','region','type','area','npcs','resources','enemies','buildings','mechanics','notes'].forEach(id=>$('#'+id).addEventListener('input',markDirty));['region','type'].forEach(id=>$('#'+id).addEventListener('change',markDirty));
+$('#navMap').onclick=()=>{changedOnly=false;$('#navMap').classList.add('active');renderMap();requestAnimationFrame(()=>frameVisible(false))};$('#navChanged').onclick=()=>{changedOnly=!changedOnly;$('#navMap').classList.toggle('active',!changedOnly);renderMap();requestAnimationFrame(()=>frameVisible(false))};$('#navFiles').onclick=openMenu;
+$('#menu').onclick=e=>{if(e.target===$('#menu'))closeMenu()};$('#closeMenu').onclick=closeMenu;$('#export').onclick=exportAll;$('#prompt').onclick=exportPrompt;$('#importBtn').onclick=()=>$('#file').click();$('#file').onchange=e=>e.target.files[0]&&importFile(e.target.files[0]);
+$('#clearAll').onclick=()=>{if(confirm('Apagar apenas as alterações locais deste editor e voltar ao mapa-base?')){localStorage.removeItem(KEY);state.screens=clone(BASE);state.revision++;persist();changedOnly=false;renderMap();closeMenu();toast('Alterações locais removidas')}};
+})();</script></body></html>
