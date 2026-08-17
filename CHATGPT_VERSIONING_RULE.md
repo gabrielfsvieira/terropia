@@ -15,10 +15,10 @@ Esta regra é **obrigatória para toda edição futura feita pelo ChatGPT no pro
 
 
 ## Regra de nome do arquivo a partir da V00184
-O ZIP devolvido deve se chamar somente pela versão, no formato `V00185.zip`, `V00186.zip`, etc. Não prefixar com TERROPIA nem adicionar descrições ao nome do ZIP.
+O ZIP devolvido deve se chamar somente pela versão, no formato `V00185.zip`, `V00187.zip`, etc. Não prefixar com TERROPIA nem adicionar descrições ao nome do ZIP.
 
 
-## Regra de repositório unificado — V00186+
+## Regra de repositório unificado — V00187+
 - A entrega oficial deve conter o projeto inteiro: jogo + World Editor + dados + testes + documentação.
 - O ZIP final deve ser somente `VNNNNN.zip`.
 - A raiz do repositório GitHub Pages abre o jogo (`/terropia/`).

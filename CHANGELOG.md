@@ -1,4 +1,11 @@
-# V00186
+## V00187
+- Corrige o jogo quebrado no GitHub Pages com `index.html` standalone.
+- Corrige o 404 do World Editor com `editor.html` standalone na raiz.
+- Corrige links internos Mobile/Desktop do editor.
+- Remove dependência do service worker no runtime standalone e limpa caches antigos.
+- Mantém jogo, editor e fontes completos no mesmo ZIP.
+
+# V00187
 
 - Repositório unificado: jogo e World Editor passam a ser entregues no mesmo ZIP e podem coexistir no mesmo GitHub Pages.
 - World Editor canônico em `/editor/`, com detecção automática Mobile/Desktop e links internos corrigidos.

@@ -1,6 +1,6 @@
 # Terrópia — Estado-base do Editor de Mundo
 
-Editor: v00186
+Editor: v00187
 Schema: 4
 Mapa-base: v00163
 Revisão: 0
@@ -17,5 +17,5 @@ As alterações exportadas pelo World Editor Mobile v10 em 2026-08-17 foram apli
 Não há mudanças de mundo pendentes após esta reconciliação.
 
 
-## V00186 — matriz regional obrigatória
-Use `REGIONAL_RESOURCES_V00186.md` como fonte autoritativa para os 8 tiers de minério, gema, árvore e peixe.
+## V00187 — matriz regional obrigatória
+Use `REGIONAL_RESOURCES_V00187.md` como fonte autoritativa para os 8 tiers de minério, gema, árvore e peixe.

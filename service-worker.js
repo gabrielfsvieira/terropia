@@ -1,4 +1,4 @@
-const BUILD='v00186';
+const BUILD='v00187';
 const CACHE_PREFIX='terropia-';
 const SHELL_CACHE=`${CACHE_PREFIX}${BUILD}-shell`;
 const RUNTIME_CACHE=`${CACHE_PREFIX}${BUILD}-runtime`;
@@ -48,7 +48,7 @@ self.addEventListener('fetch',event=>{
       const target=isEditor?'./editor/index.html':'./index.html';
       const cached=await shell.match(target,{ignoreSearch:true});
       if(cached)return cached;
-      try{return await fetch(req)}catch{return new Response('V00186 está offline e o shell ainda não foi instalado.',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8'}})}
+      try{return await fetch(req)}catch{return new Response('V00187 está offline e o shell ainda não foi instalado.',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8'}})}
     })());
     return;
   }

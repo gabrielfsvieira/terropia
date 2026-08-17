@@ -31,5 +31,5 @@ Objetivo: o Editor é a **fonte de intenção de design** e o runtime é a **fon
 Além das regras acima, aplicar sempre `CHATGPT_VERSIONING_RULE.md`: **qualquer ajuste feito pelo ChatGPT deve gerar um ZIP com exatamente uma versão de release acima da versão recebida**, atualizar metadados/build/changelog e nunca devolver a mesma versão de entrada.
 
 
-## V00186 — matriz regional obrigatória
-Use `REGIONAL_RESOURCES_V00186.md` como fonte autoritativa para os 8 tiers de minério, gema, árvore e peixe.
+## V00187 — matriz regional obrigatória
+Use `REGIONAL_RESOURCES_V00187.md` como fonte autoritativa para os 8 tiers de minério, gema, árvore e peixe.
