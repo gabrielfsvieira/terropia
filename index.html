@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terrópia — v00186</title>
+<meta name="theme-color" content="#10161d">
+<meta name="application-name" content="Terrópia">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/game.css">
+<link rel="stylesheet" href="css/v47.css">
+<link rel="stylesheet" href="css/v48.css">
+<link rel="stylesheet" href="css/v51.css">
+<link rel="stylesheet" href="css/v53.css">
+<link rel="stylesheet" href="css/v54.css">
+<link rel="stylesheet" href="css/v55.css">
+<link rel="stylesheet" href="css/v56.css">
+<link rel="stylesheet" href="css/v00057.css">
+<link rel="stylesheet" href="css/v00058.css">
+<link rel="stylesheet" href="css/v00059.css">
+<link rel="stylesheet" href="css/v00060.css">
+<link rel="stylesheet" href="css/v00061.css">
+<link rel="stylesheet" href="css/v00062.css">
+<link rel="stylesheet" href="css/v00063.css">
+<link rel="stylesheet" href="css/v00064.css">
+<link rel="stylesheet" href="css/v00065.css">
+<link rel="stylesheet" href="css/v00066.css">
+<link rel="stylesheet" href="css/v00067.css">
+<link rel="stylesheet" href="css/v00068.css">
+<link rel="stylesheet" href="css/v00069.css">
+<link rel="stylesheet" href="css/v00070.css">
+<link rel="stylesheet" href="css/v00072.css">
+<link rel="stylesheet" href="css/v00073.css">
+<link rel="stylesheet" href="css/v00091.css">
+<link rel="stylesheet" href="css/v00097.css">
+<link rel="stylesheet" href="css/v00100.css">
+<link rel="stylesheet" href="css/v00109.css">
+<link rel="stylesheet" href="css/v00117.css">
+<link rel="stylesheet" href="css/v00134.css">
+<link rel="stylesheet" href="css/v00135.css">
+<link rel="stylesheet" href="css/v00136.css">
+<link rel="stylesheet" href="css/v00137.css">
+<link rel="stylesheet" href="css/v00138.css">
+<link rel="stylesheet" href="css/v00139.css">
+<link rel="stylesheet" href="css/v00140.css">
+<link rel="stylesheet" href="css/v00141.css">
+<link rel="stylesheet" href="css/v00142.css">
+<link rel="stylesheet" href="css/v00145.css">
+<link rel="stylesheet" href="css/v00156.css">
+<link rel="stylesheet" href="css/v00157.css">
+<link rel="stylesheet" href="css/v00158.css">
+<link rel="stylesheet" href="css/v00159.css">
+<link rel="stylesheet" href="css/v00160.css">
+<link rel="stylesheet" href="css/v00163.css">
+<link rel="stylesheet" href="css/v00164.css">
+<link rel="stylesheet" href="css/v00165.css">
+<link rel="stylesheet" href="css/v00166.css">
+<link rel="stylesheet" href="css/v00167.css">
+<link rel="stylesheet" href="css/v00168.css">
+<link rel="stylesheet" href="css/v00169.css">
+<link rel="stylesheet" href="css/v00170.css">
+<link rel="stylesheet" href="css/v00171.css">
+<link rel="stylesheet" href="css/v00172.css">
+<link rel="stylesheet" href="css/v00173.css">
+<link rel="stylesheet" href="css/v00174.css">
+<link rel="stylesheet" href="css/v00175.css">
+<link rel="stylesheet" href="css/v00176.css">
+<link rel="stylesheet" href="css/v00177.css">
+<link rel="stylesheet" href="css/v00178.css">
+<link rel="stylesheet" href="css/v00186.css">
+</head>
+<body>
+<div id="startScreen" class="start-screen terropia-sunset-screen">
+  <div class="sunset-sun" aria-hidden="true"></div>
+  <div class="cloud-layer" aria-hidden="true">
+    <span class="menu-cloud cloud-a"></span><span class="menu-cloud cloud-b"></span><span class="menu-cloud cloud-c"></span>
+    <span class="menu-cloud cloud-d"></span><span class="menu-cloud cloud-e"></span><span class="menu-cloud cloud-f"></span>
+  </div>
+  <div class="start-card terropia-menu-card">
+    <div class="game-logo terropia-logo" aria-label="Terrópia">Terrópia</div>
+    <div class="logo-sub">UM MUNDO PARA CONSTRUIR SUA LENDA</div>
+    <div class="start-actions terropia-start-actions">
+      <button id="startGameBtn" class="start-btn">Novo Jogo</button>
+      <button id="loadGameBtn">Carregar Jogo</button>
+      <button id="optionsGameBtn">⚙️ Configurações</button>
+      <a class="world-editor-menu-link" href="world-editor.html" target="_blank" rel="noopener">🗺️ Editor de Mundo</a>
+      <button id="exitGameBtn" class="exit-btn">Sair</button>
+    </div>
+    <div id="exitNote" class="exit-note"></div>
+  </div>
+</div>
+
+<div id="loadScreen" class="character-screen terropia-sunset-screen hidden">
+  <div class="cloud-layer cloud-layer-soft" aria-hidden="true">
+    <span class="menu-cloud cloud-a"></span><span class="menu-cloud cloud-c"></span><span class="menu-cloud cloud-e"></span>
+  </div>
+  <div class="start-card terropia-secondary-card">
+    <div class="game-logo terropia-logo terropia-logo-small">Terrópia</div>
+    <h1 class="creator-title">Carregar personagem</h1>
+    <div id="saveList" class="save-list"></div>
+    <div class="start-actions" style="margin-top:16px"><button id="backFromLoadBtn">VOLTAR</button></div>
+    <div id="loadNote" class="exit-note"></div>
+  </div>
+</div>
+
+<div id="characterScreen" class="character-screen terropia-sunset-screen hidden">
+  <div class="cloud-layer cloud-layer-soft" aria-hidden="true">
+    <span class="menu-cloud cloud-b"></span><span class="menu-cloud cloud-d"></span><span class="menu-cloud cloud-f"></span>
+  </div>
+  <div class="start-card character-creator-card">
+    <div class="game-logo terropia-logo terropia-logo-small">Terrópia</div>
+    <h1 class="creator-title">Crie seu personagem</h1>
+    <p class="creator-subtitle">Escolha seu nome e raça, depois personalize o visual do seu personagem.</p>
+
+    <div class="creator-grid">
+      <section class="creator-section creator-name-section">
+        <label class="creator-label" for="playerNameInput">Nome e pronome</label>
+        <div class="creator-name-row">
+          <input id="playerNameInput" class="name-input creator-name-input" maxlength="12" autocomplete="off" placeholder="Seu nome">
+          <div id="pronounOptions" class="pronoun-options" role="group" aria-label="Escolha de pronome">
+            <button class="pronoun-option selected" type="button" data-pronoun="ele" aria-pressed="true">Ele/Dele</button>
+            <button class="pronoun-option" type="button" data-pronoun="ela" aria-pressed="false">Ela/Dela</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="creator-section creator-preview-section">
+        <div class="creator-label">Prévia</div>
+        <canvas id="characterPreview" class="character-preview character-preview-large" width="210" height="240" aria-label="Prévia do personagem personalizado"></canvas>
+      </section>
+
+      <section class="creator-section creator-race-section">
+        <div class="creator-label">Raça</div>
+        <div id="raceOptions" class="race-options" role="group" aria-label="Escolha de raça">
+          <button class="race-option selected" type="button" data-race="human"><strong>Humano</strong><small>Atenaria</small></button>
+          <button class="race-option" type="button" data-race="avian"><strong>Aviário</strong><small>Altaria</small></button>
+          <button class="race-option" type="button" data-race="goblin"><strong>Goblin</strong><small>Calindra</small></button>
+          <button class="race-option" type="button" data-race="gnome"><strong>Gnomo</strong><small>Calindra</small></button>
+          <button class="race-option" type="button" data-race="reptilian"><strong>Reptiliano</strong><small>Solácia</small></button>
+          <button class="race-option" type="button" data-race="orc"><strong>Orc</strong><small>Blazíria</small></button>
+          <button class="race-option" type="button" data-race="elf"><strong>Elfo</strong><small>Necrovícia</small></button>
+        </div>
+        <div id="raceDescription" class="race-description"></div>
+      </section>
+
+      <section class="creator-section creator-customization-section">
+        <div class="creator-label">Personalização</div>
+        <div class="customization-group">
+          <span class="customization-title">Cabelo</span>
+          <div id="hairOptions" class="choice-chips" role="group" aria-label="Estilo de cabelo">
+            <button type="button" class="choice-chip selected" data-hair="short" aria-pressed="true">Curto</button>
+            <button type="button" class="choice-chip" data-hair="long" aria-pressed="false">Comprido</button>
+            <button type="button" class="choice-chip" data-hair="mohawk" aria-pressed="false">Moicano</button>
+            <button type="button" class="choice-chip" data-hair="bald" aria-pressed="false">Careca</button>
+            <button type="button" class="choice-chip" data-hair="curly" aria-pressed="false">Cacheado</button>
+            <button type="button" class="choice-chip" data-hair="tied" aria-pressed="false">Preso</button>
+            <button type="button" class="choice-chip" data-hair="undercut" aria-pressed="false">Raspado Lateral</button>
+            <button type="button" class="choice-chip" data-hair="messy" aria-pressed="false">Desarrumado</button>
+          </div>
+        </div>
+        <div class="customization-group">
+          <span class="customization-title">Cor do cabelo</span>
+          <div id="hairColorOptions" class="swatch-options compact-swatches" role="group" aria-label="Cor do cabelo"></div>
+        </div>
+        <div class="customization-group">
+          <span class="customization-title">Modelo de roupa</span>
+          <div id="shirtStyleOptions" class="choice-chips" role="group" aria-label="Modelo de roupa">
+            <button type="button" class="choice-chip selected" data-shirt-style="tee" aria-pressed="true">Camiseta</button>
+            <button type="button" class="choice-chip" data-shirt-style="shortTee" aria-pressed="false">Camiseta curta</button>
+            <button type="button" class="choice-chip" data-shirt-style="tunic" aria-pressed="false">Túnica</button>
+            <button type="button" class="choice-chip" data-shirt-style="shirt" aria-pressed="false">Camisa simples</button>
+          </div>
+        </div>
+        <div class="customization-group">
+          <span class="customization-title">Camiseta</span>
+          <div id="shirtOptions" class="swatch-options" role="group" aria-label="Cor da camiseta"></div>
+        </div>
+        <div class="customization-group">
+          <span class="customization-title">Calça</span>
+          <div id="pantsOptions" class="swatch-options" role="group" aria-label="Cor da calça"></div>
+        </div>
+        <div class="customization-group">
+          <span class="customization-title">Tom de Pele</span>
+          <div id="skinOptions" class="swatch-options compact-swatches" role="group" aria-label="Tom de pele"></div>
+        </div>
+      </section>
+    </div>
+    <div id="nameError" class="exit-note creator-error"></div>
+    <div class="creator-actions">
+      <button id="backFromCharacterBtn" type="button">VOLTAR</button>
+      <button id="confirmNameBtn" class="start-btn" type="button">COMEÇAR AVENTURA</button>
+    </div>
+  </div>
+</div>
+
+<!-- Compatibilidade estrutural com versões anteriores: o nome agora é escolhido na tela de criação. -->
+<div id="nameScreen" class="name-screen hidden" aria-hidden="true"></div>
+
+<div id="introScreen" class="intro-screen hidden">
+  <div class="intro-scroll-window">
+    <div id="introStory" class="intro-story">
+      <span class="world-name">TERRÓPIA</span>
+      Bem-vindo ao mundo de Terrópia.<br><br>
+      Você leva uma vida humilde e trabalhadora na pequena vila de <b>Carpinelli</b>, na região de <b>Atenaria</b>,
+      onde os dias costumavam ser marcados pelo som das ferramentas, pelo vento entre
+      as árvores e pelas histórias contadas ao cair da noite.<br><br>
+      Mas algo está mudando.<br><br>
+      Uma força desconhecida vem consumindo a natureza em diferentes regiões do mundo.
+      Florestas adoecem, criaturas tornam-se agressivas e lugares antes cheios de vida
+      começam a perder sua essência. Ninguém sabe de onde esse mal surgiu — ou até onde
+      ele poderá chegar.<br><br>
+      Você não é um herói famoso. Não possui um grande título, uma fortuna ou um destino
+      escrito em pedra. É apenas alguém disposto a trabalhar, aprender e fazer aquilo que
+      muitos escolheram ignorar.<br><br>
+      Talvez seja justamente por isso que a mudança comece com você.<br><br>
+      Explore Terrópia, conheça seus habitantes, desenvolva suas habilidades e descubra
+      o que está por trás da corrupção que ameaça este mundo.<br><br>
+      <span class="intro-end">O futuro ainda não foi escrito. Descubra o que ele guarda para você.</span>
+    </div>
+  </div>
+  <div class="intro-vignette"></div>
+  <div class="intro-hint">A aventura começa em Carpinelli, na região de Atenaria.</div>
+  <button id="skipIntroBtn" class="intro-skip">PULAR INTRODUÇÃO</button>
+</div>
+
+<div id="optionsOverlay" class="overlay options-overlay" role="dialog" aria-modal="true" aria-labelledby="optionsTitle">
+  <div class="card options-card">
+    <div class="options-header">
+      <div><h1 id="optionsTitle">Configurações</h1><p>Ajuste a apresentação sem alterar regras, saves ou progressão.</p></div>
+      <button id="closeOptionsBtn" type="button" aria-label="Fechar opções">Fechar</button>
+    </div>
+    <div class="visual-options-grid">
+      <label class="option-row"><span><strong>Redução de movimento</strong><small>Reduz transições, tremores e animações. O sistema também respeita prefers-reduced-motion.</small></span><input id="optReducedMotion" type="checkbox"></label>
+      <label class="option-row"><span><strong>Intensidade de partículas</strong><small>Controla partículas de coleta, batalha e efeitos do mundo.</small></span><select id="optParticles"><option value="0">Desligadas</option><option value="0.35">Baixa</option><option value="0.7">Média</option><option value="1">Normal</option></select></label>
+        <label class="option-row"><span><strong>Ambiente animado</strong><small>Controla fumaça, poeira, insetos, folhas, bandeiras e outros movimentos ambientais. Não afeta feedback de combate/coleta.</small></span><select id="optAmbientFx"><option value="0">Desligado</option><option value="0.45">Reduzido</option><option value="1">Normal</option></select></label>
+      <label class="option-row"><span><strong>Contraste aumentado</strong><small>Reforça bordas, separação de painéis e legibilidade.</small></span><input id="optHighContrast" type="checkbox"></label>
+      <label class="option-row"><span><strong>Enquadramento do mundo</strong><small>Cada área usa tela fixa de 24×12 tiles; zoom e acompanhamento só ocorrem em cenas explicitamente roteirizadas.</small></span><select id="optZoom" disabled><option value="1">Tela fixa 100%</option></select></label>
+      <label class="option-row"><span><strong>Controle móvel</strong><small>Escolha entre o D-pad clássico e um joystick virtual com zona morta.</small></span><select id="optMobileControl"><option value="dpad">D-pad</option><option value="joystick">Joystick</option></select></label>
+      <label class="option-row"><span><strong>Escala de textos</strong><small>Aumenta textos da interface sem alterar o canvas do mundo.</small></span><select id="optTextScale"><option value="1">100%</option><option value="1.1">110%</option><option value="1.2">120%</option><option value="1.3">130%</option></select></label>
+      <label class="option-row"><span><strong>Diferenciação de estados</strong><small>Acrescenta símbolos, contornos e padrões para não depender apenas de cores.</small></span><input id="optStatePatterns" type="checkbox"></label>
+      <label class="option-row"><span><strong>Texto ingame reforçado</strong><small>Adiciona símbolos redundantes a dano, crítico, cura, bloqueio, erro e status.</small></span><input id="optAccessibleCombatText" type="checkbox"></label>
+    </div>
+    <div class="options-footer"><button id="resetVisualOptionsBtn" type="button">Restaurar padrão</button><button id="saveVisualOptionsBtn" class="start-btn" type="button">Aplicar</button></div>
+  </div>
+</div>
+
+<div id="orientationHint" class="orientation-hint" role="status" aria-live="polite" hidden>
+  <span>↻ Para uma experiência melhor no celular, experimente usar o modo paisagem.</span>
+  <button id="orientationTryBtn" type="button">Tentar paisagem</button>
+  <button id="orientationDismissBtn" type="button" aria-label="Dispensar recomendação">×</button>
+</div>
+<div id="gamepadPrompt" class="gamepad-prompt" role="status" aria-live="polite" hidden></div>
+<div id="gameWrap" class="wrap game-hidden">
+  <section class="game">
+    <div class="game-canvas-shell">
+      <canvas id="game" width="1440" height="720"></canvas>
+    </div>
+    <div id="locationLabel" class="location-label">Vila Carpinelli, Atenaria</div>
+    <div id="dpad" class="dpad" aria-label="Controles de movimento">
+      <button data-move="up">▲</button><button data-move="left">◀</button><button data-action="interact">E</button><button data-move="right">▶</button><button data-move="down">▼</button>
+    </div>
+    <div id="joystick" class="virtual-joystick" aria-label="Joystick virtual">
+      <div class="joystick-base"><div class="joystick-knob"></div></div>
+      <button class="joystick-interact" data-action="interact">E</button>
+    </div>
+    <button id="mobileContextAction" class="mobile-context-action" type="button" aria-label="Interagir"><span aria-hidden="true">✋</span><strong>Interagir</strong></button>
+    <div id="notice" class="notice"></div>
+    <div id="useItemIndicator" class="use-item-indicator"></div>
+    <div id="skillLevelPopup" class="skill-level-popup">
+      <div class="skill-level-title"><span id="skillLevelIcon" class="icon">⭐</span><span id="skillLevelTitle">Nível aumentado!</span></div>
+      <div id="skillLevelUnlock" class="skill-level-unlock"></div>
+    </div>
+
+    <div id="battle" class="overlay">
+      <div class="card">
+        <div class="topline">
+          <h1>⚔️ Batalha</h1><span id="turnBadge" class="badge">Seu turno</span>
+        </div>
+        <div class="battle-main"><div class="battle-left"><div class="battle-stage-wrap">
+          <div class="battle-scene-caption"><span id="battleRegionLabel">Atenaria</span><strong id="battleSceneLabel">Área de combate</strong></div>
+          <canvas id="battleCanvas" class="battle-canvas" width="640" height="260"></canvas>
+          <div class="battle-turn-strip"><span class="battle-turn-dot" aria-hidden="true"></span><span id="battleTurnText">Escolha sua ação</span></div>
+        </div>
+        <div class="battle-grid">
+          <div class="fighter">
+            <strong id="battlePlayerName">Léo</strong>
+            <div class="row"><span>HP</span><span id="bhpText"></span></div>
+            <div class="bar"><div id="bhpBar" class="fill hp"></div></div><div id="battlePlayerStatus" class="battle-status">—</div>
+            <div class="row" style="margin-top:8px"><span>MP</span><span id="bmpText"></span></div>
+            <div class="bar"><div id="bmpBar" class="fill mp"></div></div>
+          </div>
+          <div class="fighter">
+            <strong id="enemyName">Inimigo</strong>
+            <div class="row"><span>HP</span><span id="ehpText"></span></div>
+            <div class="bar"><div id="ehpBar" class="fill hp"></div></div><div id="battleEnemyStatus" class="battle-status">—</div>
+          </div>
+        </div>
+        <div id="battleText" class="log" style="min-height:82px;max-height:105px"></div>
+        </div><div id="abilityBar" class="ability-bar" aria-label="Barra de habilidades"></div><div class="actions battle-actions">
+          <button id="attackBtn" class="battle-icon-btn" data-tooltip="Atacar" aria-label="Atacar"><span class="battle-action-icon" aria-hidden="true">⚔️</span><span class="battle-action-label">Atacar</span></button>
+          <button id="rangedBtn" class="battle-icon-btn" data-tooltip="Ataque a Distância" aria-label="Ataque a Distância"><span class="battle-action-icon" aria-hidden="true">🏹</span><span class="battle-action-label">Distância</span></button>
+          <button id="skillBtn" class="battle-icon-btn" data-tooltip="Magia" aria-label="Magia"><span class="battle-action-icon" aria-hidden="true">✨</span><span class="battle-action-label">Magia</span></button>
+          <button id="defendBtn" class="battle-icon-btn" data-tooltip="Defender" aria-label="Defender"><span class="battle-action-icon" aria-hidden="true">🛡️</span><span class="battle-action-label">Defender</span></button>
+          <button id="potionBtn" class="battle-icon-btn" data-tooltip="Poção" aria-label="Poção"><span class="battle-action-icon" aria-hidden="true">🧪</span><span class="battle-action-label">Poção</span></button>
+          <button id="eatBtn" class="battle-icon-btn" data-tooltip="Comer" aria-label="Comer"><span class="battle-action-icon" aria-hidden="true">🍽️</span><span class="battle-action-label">Comer</span></button>
+          <button id="runBtn" class="battle-icon-btn" data-tooltip="Fugir" aria-label="Fugir"><span class="battle-action-icon" aria-hidden="true">🏃</span><span class="battle-action-label">Fugir</span></button>
+        </div></div>
+      </div>
+    </div>
+
+    <div id="shop" class="overlay">
+      <div class="card">
+        <div class="sticky-overlay-header">
+          <div class="topline">
+            <h1>🧑‍💼 Loja de Carpinelli</h1>
+            <button id="closeShopBtn">Fechar</button>
+          </div>
+          <div class="row" style="margin-top:9px"><span>Seu ouro</span><strong id="shopGold" class="badge">0 ouro</strong></div>
+        </div>
+
+        <div class="shop-section buy">
+          <div class="shop-section-title">🛒 ITENS À VENDA</div>
+          <div class="shop-grid">
+            <div class="shop-item">
+              <strong><span data-item-icon-type="rod">🎣</span> Vara de Pescar — 35 ouro</strong>
+              <small>Uma vara simples para pescar. Peixe não incluso; decepções podem ocorrer.</small>
+              <button id="buyRodBtn">Comprar</button>
+            </div>
+            <div class="shop-item">
+              <strong>🧤 Luvas de Ferro — 220 ouro</strong>
+              <small>Slot MÃOS. Um pequeno investimento contra dedos esmagados.</small>
+              <button id="buyIronGlovesBtn">Comprar</button>
+            </div>
+            <div class="shop-item">
+              <strong>🪖 Capacete de Ferro — 280 ouro</strong>
+              <small>Slot CABEÇA. Ideias ruins continuam entrando; espadas não.</small>
+              <button id="buyIronHelmetBtn">Comprar</button>
+            </div>
+            <div class="shop-item">
+              <strong><span data-item-icon-type="ironShield">🛡️</span> Escudo de Ferro — 430 ouro</strong>
+              <small>Slot MÃO ESQUERDA. Especialista em dizer “não” para dano.</small>
+              <button id="buyIronShieldBtn">Comprar</button>
+            </div>
+            <div class="shop-item">
+              <strong><span data-item-icon-type="ironSword">⚔️</span> Espada de Ferro — 520 ouro</strong>
+              <small>Slot MÃO DIREITA. Tier Ferro: +4 de ataque.</small>
+              <button id="buySwordBtn">Comprar</button>
+            </div>
+            <div class="shop-item">
+              <strong><span data-item-icon-type="ironArmor">🛡️</span> Armadura de Ferro — 650 ouro</strong>
+              <small>Slot CORPO. Cara, pesada e mais barata que um funeral.</small>
+              <button id="buyArmorBtn">Comprar</button>
+            </div>
+            <div class="shop-item">
+              <strong><span data-item-icon-type="potion">🧪</span> Poção — 10 ouro</strong>
+              <small>Recupera 18 HP durante uma batalha.</small>
+              <button id="buyPotionBtn">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="elisShop" class="overlay">
+      <div class="card elis-shop-card">
+        <div class="sticky-overlay-header">
+          <div class="topline">
+            <h1>🧪 Loja da Elis</h1>
+            <button id="closeElisShopBtn">Fechar</button>
+          </div>
+          <div class="row" style="margin-top:9px"><span>Seu ouro</span><strong id="elisShopGold" class="badge">0 ouro</strong></div>
+        </div>
+        <div class="shop-section buy">
+          <div class="shop-section-title">⚗️ SUPRIMENTOS DE ALQUIMIA</div>
+          <div class="shop-grid">
+            <div class="shop-item item-card">
+              <strong>⚗️ Frasco Vazio — 5 ouro</strong>
+              <small>Encha o frasco em água e combine o Frasco com Água com um Girassol. Requer Alquimia nível 1.</small>
+              <button id="buyElisFlaskBtn">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="levels" class="overlay">
+      <div class="card">
+        <div class="sticky-overlay-header">
+          <div class="topline">
+            <h1>📊 Níveis de Habilidade</h1>
+            <button id="closeLevelsBtn">Fechar</button>
+          </div>
+          <div style="color:var(--muted);font-size:12px;margin-top:6px">
+            Combate, Arquearia e Ferraria podem evoluir até o nível 60; as demais habilidades, até o nível 50.
+          </div>
+        </div>
+        <div id="skillsList" class="skill-list"></div>
+        <section id="skillGuide" class="skill-guide" aria-live="polite">
+          <div class="skill-guide-empty">Selecione uma habilidade para planejar a progressão.</div>
+        </section>
+        <section class="perk-panel"><h2>🌿 Árvore de Perks</h2><p>Selecione uma Skill acima. Você recebe pontos nos níveis 10, 25 e 40; escolhas podem ser redefinidas gratuitamente.</p><div id="perkTree"></div></section>
+      </div>
+    </div>
+
+    <div id="crafting" class="overlay">
+      <div class="card">
+        <div class="sticky-overlay-header">
+          <div class="topline">
+            <h1>🛠️ Artesanato</h1>
+            <button id="closeCraftingBtn">Fechar</button>
+          </div>
+          <div id="craftingSubtitle" style="color:var(--muted);font-size:12px;margin-top:6px">
+            Escolha uma ação para ver somente as receitas daquela categoria.
+          </div>
+        </div>
+
+        <div id="craftQueue" class="production-queue"></div><div id="craftingMenu" class="crafting-menu">
+          <div class="craft-action-grid">
+            <button id="openAlchemyBtn" class="craft-action-btn"><span>🧪</span><strong>Alquimia</strong><small>Poções de cura, defesa, coleta e resistência</small></button><button id="openEnchantBtn" class="craft-action-btn"><span>💠</span><strong>Encantar</strong><small>Uma gema lapidada por equipamento</small></button><button id="openGemCraftBtn" class="craft-action-btn"><span data-item-icon-type="rawGem">💎</span><strong>Lapidar</strong><small>Safira, Água-marinha, Rubi, Esmeralda, Diamante, Ônix, Obsidiana e Necrostone</small></button>
+            <button id="openAmuletCraftBtn" class="craft-action-btn"><span>📿</span><strong>Criar Amuletos</strong><small>Amuletos lapidados por tier</small></button>
+            <button id="openBowCraftBtn" class="craft-action-btn"><span>🏹</span><strong>Criar Arcos</strong><small>Arcos de madeira por tier</small></button>
+            <button id="openArrowCraftBtn" class="craft-action-btn"><span>➶</span><strong>Criar Flechas</strong><small>Lotes de 10 flechas por tier</small></button>
+          </div>
+          <div class="craft-special-compact">
+            <h2>🐉 Especial</h2>
+            <div class="recipe-card">
+              <strong>🐉 Armadura de Escama de Dragão</strong>
+              <small>Consome 1 Escama de Dragão. Reduz o dano recebido em 55%. +80 XP de Artesanato.</small>
+              <button id="craftDragonArmorBtn">Criar</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="craftingDetail" class="crafting-detail" hidden>
+          <button id="craftingBackBtn" class="craft-back-btn">← Voltar</button>
+          <h2 id="craftingDetailTitle" class="craft-detail-title">Receitas</h2>
+          <div id="craftPaneAlchemy" class="craft-pane" hidden><div id="alchemyRecipes" class="recipe-grid"></div></div><div id="craftPaneEnchant" class="craft-pane" hidden><div id="enchantRecipes" class="recipe-grid"></div></div><div id="craftPaneGems" class="craft-pane" hidden><div id="gemCutRecipes" class="recipe-grid"></div></div>
+          <div id="craftPaneAmulets" class="craft-pane" hidden><div id="amuletCraftRecipes" class="recipe-grid"></div></div>
+          <div id="craftPaneBows" class="craft-pane" hidden><div id="bowCraftRecipes" class="recipe-grid"></div></div>
+          <div id="craftPaneArrows" class="craft-pane" hidden>
+            <div id="craftProgress" class="smith-progress">
+              <div class="smith-progress-top"><strong id="craftProgressLabel">Criando...</strong><span id="craftProgressTime">0.0s</span></div>
+              <div class="smith-progress-bar"><div id="craftProgressFill" class="smith-progress-fill"></div></div>
+            </div>
+            <div id="arrowCraftRecipes" class="recipe-grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="forgeOverlay" class="overlay">
+      <div class="card">
+        <div class="sticky-overlay-header"><div class="topline"><h1>🔥 Forja</h1><button id="closeForgeBtn">Fechar</button></div>
+        <div class="bank-summary">Transforme minérios em barras. Cada barra leva tempo para ficar pronta.</div></div>
+        <div id="forgeProgress" class="smith-progress">
+          <div class="smith-progress-top"><strong id="forgeProgressLabel">Forjando...</strong><span id="forgeProgressTime">0.0s</span></div>
+          <div class="smith-progress-bar"><div id="forgeProgressFill" class="smith-progress-fill"></div></div>
+        </div>
+        <div id="forgeQueue" class="production-queue"></div><div id="forgeRecipes" class="recipe-grid"></div>
+      </div>
+    </div>
+    <div id="anvilOverlay" class="overlay">
+      <div class="card">
+        <div class="sticky-overlay-header"><div class="topline"><h1>⚒️ Bigorna</h1><button id="closeAnvilBtn">Fechar</button></div>
+        <div class="bank-summary">Escolha um tier e depois o equipamento que deseja fabricar.</div></div>
+        <div id="anvilProgress" class="smith-progress">
+          <div class="smith-progress-top"><strong id="anvilProgressLabel">Fabricando...</strong><span id="anvilProgressTime">0.0s</span></div>
+          <div class="smith-progress-bar"><div id="anvilProgressFill" class="smith-progress-fill"></div></div>
+        </div>
+        <div id="anvilTierTabs" class="tier-tabs"></div>
+        <button id="anvilBackBtn" class="anvil-back" style="display:none">← Voltar aos tiers</button>
+        <div id="anvilQueue" class="production-queue"></div><div id="anvilRecipes" class="recipe-grid"></div>
+      </div>
+    </div>
+    <div id="bankOverlay" class="overlay">
+      <div class="card" style="max-width:760px">
+        <div class="sticky-overlay-header"><div class="topline"><h1>🏦 Banco de Carpinelli</h1><button id="closeBankBtn">Fechar</button></div>
+        <div class="bank-summary">O inventário permanece aberto à direita. Clique em um item do inventário para guardar; clique no Baú do Banco para retirar. Botão direito mantém as opções de transferir um ou todos.</div></div>
+        <div class="bank-section"><div class="row"><strong>Baú do Banco</strong><span id="bankCount" class="badge">0/100</span></div><div id="bankGrid" class="bank-grid"></div></div>
+      </div>
+    </div>
+
+    <div id="bankerDialogue" class="overlay banker-dialogue dialogue-overlay">
+      <div class="card banker-dialogue-card dialogue-card">
+        <div class="npc-dialogue-head dialogue-head">
+          <canvas id="bankerDialogueNpcSprite" class="npc-dialogue-sprite" width="96" height="96" aria-label="Retrato do banqueiro"></canvas>
+          <div class="dialogue-identity"><span class="dialogue-kicker">BANCO DE CARPINELLI</span><h1 id="bankerDialogueName">Banqueiro</h1><span class="dialogue-role">Serviço</span></div>
+        </div>
+        <div id="bankerDialogueText" class="quest-offer-message dialogue-text"></div>
+        <div class="banker-dialogue-actions dialogue-actions"><button id="bankerOpenBankBtn">🏦 Abrir banco</button><button id="bankerCancelBtn">✕ Encerrar</button></div>
+      </div>
+    </div>
+
+    <div id="sleepOverlay" class="overlay">
+      <div class="card" style="max-width:430px">
+        <div class="topline"><h1>🛏️ Cama</h1><button id="cancelSleepBtn">Fechar</button></div>
+        <div class="quest-offer-message">Dormir recupera completamente seu HP e MP. A cama não julga quantas vezes você quase morreu hoje.</div>
+        <div class="sleep-actions"><button id="sleepBtn">😴 Dormir</button><button id="sleepCancelBtn">Cancelar</button></div>
+      </div>
+    </div>
+
+    <div id="storyMessage" class="overlay">
+      <div class="card" style="max-width:470px">
+        <div class="topline">
+          <h1 id="storyMessageTitle">Mensagem</h1>
+          <button id="closeStoryMessageBtn">OK</button>
+        </div>
+        <div id="storyMessageText" class="quest-offer-message" style="margin-top:12px"></div>
+      </div>
+    </div>
+
+    <div id="questReward" class="overlay dialogue-overlay">
+      <div class="card dialogue-card">
+        <div class="npc-dialogue-head dialogue-head"><canvas id="questRewardNpcSprite" class="npc-dialogue-sprite" width="96" height="96"></canvas><div class="dialogue-identity"><span class="dialogue-kicker">MISSÃO</span><div id="questRewardNpc" class="quest-offer-npc dialogue-name">NPC</div><span class="dialogue-role">Recompensa</span></div></div>
+        <div id="questRewardMessage" class="quest-offer-message dialogue-text"></div>
+        <div id="questRewardList" class="quest-reward-list"></div>
+        <div id="questRewardStatus" class="reward-status ok"></div>
+        <div class="dialogue-continue" aria-hidden="true">◆ RECOMPENSA DISPONÍVEL</div>
+        <div class="quest-offer-actions dialogue-actions">
+          <button id="claimRewardBtn" class="quest-accept">🎁 Receber recompensa</button>
+          <button id="closeRewardBtn">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="questOffer" class="overlay dialogue-overlay">
+      <div class="card dialogue-card">
+        <div class="npc-dialogue-head dialogue-head"><canvas id="questOfferNpcSprite" class="npc-dialogue-sprite" width="96" height="96"></canvas><div class="dialogue-identity"><span class="dialogue-kicker">CONVERSA</span><div id="questOfferNpc" class="quest-offer-npc dialogue-name">NPC</div><span class="dialogue-role">Proposta de missão</span></div></div>
+        <div id="questOfferMessage" class="quest-offer-message dialogue-text"></div>
+        <div class="quest-offer-info">
+          <div id="questOfferRequirement" class="quest-info-line"></div>
+          <div id="questOfferObjective" class="quest-info-line"></div>
+          <div id="questOfferProvided" class="quest-info-line" style="display:none"></div>
+          <div id="questOfferReward" class="quest-info-line"></div>
+        <div id="questSkillChecks" class="quest-skill-checks" hidden></div>
+        </div>
+        <div class="dialogue-continue" aria-hidden="true">◆ ESCOLHA UMA RESPOSTA</div>
+        <div class="quest-offer-actions dialogue-actions">
+          <button id="acceptQuestBtn" class="quest-accept">✓ Aceitar</button>
+          <button id="declineQuestBtn" class="quest-decline">✕ Recusar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="diary" class="overlay">
+      <div class="card diary-card">
+        <div class="topline"><h1>📖 Diário do Aventureiro</h1><button id="closeDiaryBtn">Fechar</button></div>
+        <div id="diaryStats" class="diary-stats"></div>
+        <div class="diary-columns">
+          <div><h2>⚔️ Inimigos derrotados</h2><div id="diaryDefeats" class="diary-list"></div></div>
+          <div><h2>✨ Itens raros descobertos</h2><div id="diaryRare" class="diary-list"></div></div>
+        </div>
+        <div class="diary-bounty"><strong>🧭 Descobertas</strong><div id="diaryDiscoveries" class="diary-list"></div></div>
+        <div class="diary-bounty"><strong>🏆 Conquistas</strong><div id="diaryAchievements" class="diary-list"></div></div><div class="diary-bounty"><strong>💛 Amizade</strong><div id="diaryFriendship" class="diary-list"></div></div><div class="diary-bounty"><strong>🤝 Reputação regional</strong><div id="diaryReputation" class="diary-list"></div></div><div class="diary-bounty"><strong>🏅 Mastery</strong><div id="diaryMastery" class="diary-list mastery-log"></div></div><div class="diary-bounty"><strong>📊 Completion Log</strong><div id="diaryCompletion"></div></div><div class="diary-bounty"><strong>🧭 Sistemas do mundo</strong><div id="diarySystems" class="diary-list"></div></div><div class="diary-bounty"><strong>🎯 Desafios de combate</strong><div>Slimes: <b id="diarySlimes">0</b> • Lobos: <b id="diaryWolves">0</b> • Aranhas: <b id="diarySpiders">0</b> • Morcegos: <b id="diaryBats">0</b></div></div>
+      </div>
+    </div>
+
+    <div id="orderBoard" class="overlay"><div class="card"><div class="topline"><h1>📌 Quadro de Pedidos — Carpinelli</h1><button id="closeOrderBoardBtn">Fechar</button></div><p class="controls">Três pedidos por ciclo. A seleção se renova a cada 6 horas; cada pedido só paga uma vez por ciclo.</p><div id="orderBoardList" class="diary-list"></div></div></div>
+
+    <div id="quests" class="overlay">
+      <div class="card">
+        <div class="sticky-overlay-header"><div class="topline"><h1>📜 Missões</h1><button id="closeQuestsBtn">Fechar</button></div></div>
+        <div class="quest-log-toolbar"><button id="orderBoardBtn">📌 Quadro de Pedidos</button>
+          <button id="questShowAllBtn" class="quest-show-all">Ver todas as missões.</button>
+          <div id="questRegionLabel" class="quest-region-label">Região</div>
+        </div>
+        <div id="questCardElder" class="quest-card"><strong>🧓 Anciã Mira</strong><div id="questText" class="questbox"></div></div>
+        <div id="questCardFarmer" class="quest-card"><strong>👨‍🌾 Joaquim</strong><div id="farmerQuestText" class="questbox"></div></div>
+        <div id="questCardAlfredo" class="quest-card"><strong>👨‍🌾 Alfredo</strong><div id="alfredoQuestText" class="questbox"></div></div>
+        <div id="questCardHeitor" class="quest-card"><strong>🧒 Heitor</strong><div id="heitorQuestText" class="questbox"></div></div>
+        <div id="questCardGnome" class="quest-card"><strong>🧙‍♂️ Gnomo Júlio</strong><div id="gnomeQuestText" class="questbox"></div></div>
+        <div id="questCardClarisse" class="quest-card"><strong>👧 Clarisse</strong><div id="clarisseQuestText" class="questbox"></div></div>
+        <div id="questCardJordan" class="quest-card"><strong>👴 Jordan</strong><div id="jordanQuestText" class="questbox"></div></div>
+        <div id="questCardGeraldo" class="quest-card"><strong>🧙‍♂️ Geraldo</strong><div id="geraldoQuestText" class="questbox"></div></div>
+        <div id="questCardWitch" class="quest-card"><strong>🧙‍♀️ Bruxa Selene</strong><div id="witchQuestText" class="questbox"></div></div>
+        <div class="quest-extra-title">Carreiras profissionais</div>
+        <div id="professionQuestLines" class="profession-quest-lines"></div>
+        <div class="quest-extra-title">Contratos profissionais</div>
+        <div id="professionalContractsList" class="professional-contracts-list"></div>
+        <div class="quest-extra-title">Projetos do mundo</div>
+        <div id="worldProjectsList" class="world-projects-list"></div>
+        <div class="quest-extra-title">Desafios adicionais</div>
+        <div class="quest-card quest-card-bounty"><strong>🎯 Desafios de combate</strong><div id="bountyQuestText" class="questbox"></div></div>
+      </div>
+    </div>
+    <div id="equipment" class="overlay">
+      <div class="card">
+        <div class="sticky-overlay-header"><div class="topline"><h1>🛡️ Equipamento</h1><button id="closeEquipmentBtn">Fechar</button></div>
+        <div style="color:var(--muted);font-size:12px;margin-top:6px">Clique esquerdo para remover. Clique direito para abrir a opção Remover.</div></div>
+        <div id="equipmentGrid" class="equipment-grid"></div>
+      </div>
+    </div>
+
+    <div id="worldMapOverlay" class="overlay world-map-overlay" role="dialog" aria-modal="true" aria-labelledby="worldMapTitle">
+      <div class="card world-map-card">
+        <div class="topline world-map-header">
+          <h1 id="worldMapTitle">🗺️ Mapa do Mundo</h1>
+          <button id="closeWorldMapBtn" type="button">Fechar</button>
+        </div>
+        <div class="world-map-stage">
+          <div class="world-map-frame" role="img" aria-label="Mapa global de Terrópia com as regiões Atenaria, Altaria, Mornaqua, Invérnia, Calindra, Solácia, Blazíria e Necrovícia">
+            <div id="worldMapGrid" class="world-map-grid" aria-hidden="true"></div>
+            <div id="worldMapLabels" class="world-map-labels" aria-hidden="true"></div>
+            <div id="worldMapPlayerPin" class="world-map-player-pin" role="img" aria-label="Localização atual do jogador" hidden></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="game-bottom-dock game-status-row" aria-label="Registro, comando e status do personagem">
+    <div class="game-log-panel"><div id="log" class="log" aria-label="Registro e histórico"></div></div>
+    <form id="devCommandForm" class="dev-command-bar" autocomplete="off">
+      <span class="dev-command-prompt" aria-hidden="true">&gt;</span>
+      <input id="devCommandInput" type="text" spellcheck="false" autocapitalize="off" aria-label="Comando de desenvolvimento">
+      <button id="devCommandRunBtn" type="submit">Executar</button>
+    </form>
+    <aside id="vitalsDock" class="vitals-dock hud-v2" aria-label="Status rápido do personagem">
+      <div class="hud-vitals-primary">
+        <div id="vitalHp" class="hud-meter hud-meter-hp" style="--value:100"><b>HP</b><div class="hud-meter-track"><i></i></div><span id="vitalHpText">42/42</span></div>
+        <div id="vitalMp" class="hud-meter hud-meter-mp" style="--value:100"><b>MP</b><div class="hud-meter-track"><i></i></div><span id="vitalMpText">12/12</span></div>
+      </div>
+      <div class="hud-secondary" aria-label="Recursos"><div class="hud-secondary-item hud-gold" title="Ouro"><span class="gold-coin-icon" aria-hidden="true">●</span><strong id="vitalGoldText">0</strong></div></div>
+      <div id="hudStatusStrip" class="hud-status-strip" aria-label="Efeitos ativos" hidden></div>
+    </aside>
+  </div>
+
+  <aside class="panel">
+    <div class="side-tabs" aria-label="Menu principal">
+      <button id="panelCharacterBtn" class="active panel-icon-btn" type="button" data-tooltip="Personagem" aria-label="Personagem"><span aria-hidden="true">👤</span></button>
+      <button id="panelSkillsBtn" class="panel-icon-btn" type="button" data-tooltip="Níveis" aria-label="Níveis"><span aria-hidden="true">📊</span></button>
+      <button id="panelInventoryBtn" class="panel-icon-btn" type="button" data-tooltip="Inventário" aria-label="Inventário"><span aria-hidden="true">🎒</span></button>
+      <button id="worldMapBtn" class="panel-icon-btn" type="button" data-tooltip="Mapa do Mundo" aria-label="Abrir Mapa do Mundo"><span aria-hidden="true">🗺️</span></button>
+      <button id="questsBtn" class="panel-icon-btn" type="button" data-tooltip="Missões" aria-label="Missões"><span aria-hidden="true">📜</span></button>
+      <button id="equipmentBtn" class="panel-icon-btn" type="button" data-tooltip="Equipamento" aria-label="Equipamento"><span aria-hidden="true">🛡️</span></button>
+      <button id="diaryBtn" class="panel-icon-btn" type="button" data-tooltip="Diário" aria-label="Diário"><span aria-hidden="true">📖</span></button>
+      <button id="settingsBtn" class="panel-icon-btn" type="button" data-tooltip="Configurações" aria-label="Configurações"><span aria-hidden="true">⚙️</span></button>
+    </div>
+
+    <div id="panelCharacterView" class="side-view active">
+      <h2>Personagem</h2>
+      <div class="character-vitals-layout">
+        <div class="player-portrait-wrap"><canvas id="playerPortrait" width="144" height="144" aria-label="Retrato procedural do jogador"></canvas></div>
+        <div class="character-vitals-bars">
+          <div class="row character-level-row"><strong id="levelText">Nível 1</strong></div>
+          <div class="stat"><div class="row"><span>HP</span><span id="hpText"></span></div><div class="bar"><div id="hpBar" class="fill hp"></div></div></div>
+          <div class="stat"><div class="row"><span>MP</span><span id="mpText"></span></div><div class="bar"><div id="mpBar" class="fill mp"></div></div></div>
+          <div class="stat"><div class="row"><span>XP</span><span id="xpText"></span></div><div class="bar"><div id="xpBar" class="fill xp"></div></div></div>
+        </div>
+      </div>
+      <div class="row character-gold-row"><span>🪙 Ouro</span><strong id="goldText">0 ouro</strong></div>
+      <div class="character-stats-list" aria-label="Stats de combate">
+        <div class="row"><span>⚔️ Ataque</span><strong id="atkText"></strong></div>
+        <div class="row"><span>🛡️ Armadura</span><strong id="armorText">Não</strong></div>
+        <div class="row" title="Dano mágico"><span>🔮 Ataque Mágico</span><strong id="magicAtkText"></strong></div>
+        <div class="row" title="Chance de evadir um ataque inimigo"><span>💨 Evasão</span><strong id="evasionText">0%</strong></div>
+      </div>
+    </div>
+
+    <div id="panelSkillsView" class="side-view">
+      <button id="levelsBtn" class="levels-button panel-icon-btn" type="button" data-tooltip="Ver todos os níveis" aria-label="Ver todos os níveis"><span aria-hidden="true">📊</span></button>
+      <div id="skillMiniBars" class="skill-mini-list"></div>
+    </div>
+
+    <div id="panelInventoryView" class="side-view">
+      <div class="inventory-head"><h2 style="margin:0">Inventário</h2><span id="inventoryCount" class="badge">0/28</span><div class="mobile-inventory-tools"><button id="inventoryActionsBtn" class="panel-icon-btn" type="button" data-tooltip="Ações" aria-label="Ações" disabled><span aria-hidden="true">⚙️</span></button><button id="inventoryExpandBtn" class="panel-icon-btn" type="button" data-tooltip="Expandir inventário" aria-label="Expandir inventário"><span aria-hidden="true">⛶</span></button></div></div>
+      <div id="inventoryGrid" class="inventory-grid"></div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="btnrow"><button id="saveBtn" class="panel-icon-btn" type="button" data-tooltip="Salvar" aria-label="Salvar"><span aria-hidden="true">💾</span></button><button id="exportSaveBtn" class="panel-icon-btn" type="button" data-tooltip="Exportar save" aria-label="Exportar save"><span aria-hidden="true">⬇️</span></button><button id="importSaveBtn" class="panel-icon-btn" type="button" data-tooltip="Importar save" aria-label="Importar save"><span aria-hidden="true">⬆️</span></button><input id="importSaveFile" type="file" accept="application/json,.json" hidden><button id="resetBtn" class="panel-icon-btn" type="button" data-tooltip="Reiniciar" aria-label="Reiniciar"><span aria-hidden="true">↻</span></button><button id="fullscreenBtn" class="panel-icon-btn" type="button" data-tooltip="Tela cheia" aria-label="Alternar tela cheia"><span aria-hidden="true">⛶</span></button></div>
+      <div class="controls">
+        <h2>Controles</h2>
+        <div><kbd>WASD</kbd> / <kbd>↑↓←→</kbd> mover • <kbd>E</kbd> interagir</div>
+        <div>🖱️ Clique para caminhar ou interagir. No celular, use o D-pad.</div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+
+<div id="dragonAlert" class="overlay dragon-alert">
+  <div class="card dragon-alert-card">
+    <div id="dragonAlertIcon" class="dragon-alert-icon">⚠️</div>
+    <h1 id="dragonAlertTitle">ENCONTRO ALEATÓRIO!</h1>
+    <p id="dragonAlertText" class="dragon-alert-text"></p>
+    <button id="dragonAlertOkBtn">OK</button>
+  </div>
+</div>
+
+<div id="dangerPrompt" class="overlay danger-prompt">
+  <div class="card danger-card">
+    <h1 id="dangerPromptTitle">⚠️ ÁREA PERIGOSA!</h1>
+    <div id="dangerPromptText" class="danger-text"></div>
+    <div class="danger-actions">
+      <button id="dangerYesBtn" class="danger-yes">Sim, eu tenho um plano*</button>
+      <button id="dangerNoBtn">Não, eu lembrei que gosto de viver</button>
+    </div>
+    <small>* "Plano" pode significar correr muito rápido.</small>
+  </div>
+</div>
+
+<div id="battleResult" class="battle-result battle-result-fullscreen" role="dialog" aria-modal="true" aria-live="assertive">
+  <div class="battle-result-card">
+    <div id="battleResultTitle" class="battle-result-title">RESULTADO</div>
+    <div id="battleResultRewards" class="battle-result-rewards"></div>
+    <button id="battleResultOkBtn" class="battle-result-ok">OK</button>
+  </div>
+</div>
+
+<div id="deathOverlay" class="death-overlay"><div><div id="deathText" class="death-text">VOCÊ FALECEU!</div><div id="deathHint" class="death-hint"></div></div></div>
+<div id="itemHoverTooltip" class="item-hover-tooltip"></div>
+<div id="panelHoverTooltip" class="panel-hover-tooltip" role="tooltip" aria-hidden="true"></div>
+
+<div id="itemContextMenu" class="item-context-menu">
+  <div id="contextItemTitle" class="context-title">Item</div>
+  <button id="contextEatBtn" class="context-option" style="display:none">Comer</button>
+  <button id="contextUseBtn" class="context-option">Usar item</button>
+  <button id="contextDropBtn" class="context-option danger">Dropar Item</button>
+  <button id="contextCancelBtn" class="context-option">Cancelar</button>
+</div>
+
+<div id="npcContextMenu" class="item-context-menu npc-context-menu">
+  <div id="npcContextTitle" class="context-title">NPC</div>
+  <button id="npcContextTalkBtn" class="context-option">Falar</button>
+  <button id="npcContextShopBtn" class="context-option" style="display:none">Abrir Loja</button>
+  <button id="npcContextCancelBtn" class="context-option">Cancelar</button>
+</div>
+
+<div id="bankerContextMenu" class="item-context-menu banker-context-menu">
+  <div id="bankerContextTitle" class="context-title">Banqueiro</div>
+  <button id="bankerTalkOption" class="context-option">Falar</button>
+  <button id="bankerOpenOption" class="context-option">Abrir Banco</button>
+  <button id="bankerCancelOption" class="context-option">Cancelar</button>
+</div>
+
+<script defer src="js/core.js"></script>
+<script defer src="data/tiers.js"></script>
+<script defer src="data/skills.js"></script>
+<script defer src="data/progression-balance.js"></script>
+<script defer src="js/requirements.js"></script>
+<script defer src="data/world.js"></script>
+<script defer src="data/equipment.js"></script>
+<script defer src="data/resources.js"></script>
+<script defer src="data/recipes.js"></script>
+<script defer src="data/fish.js"></script>
+<script defer src="data/production-chains.js"></script>
+<script defer src="data/mastery.js"></script>
+<script defer src="data/perks.js"></script>
+<script defer src="data/quest-skill-checks.js"></script>
+<script defer src="data/profession-quests.js"></script>
+<script defer src="data/world-projects.js"></script>
+<script defer src="data/professional-contracts.js"></script>
+<script defer src="data/gathering-requirements.js"></script>
+<script defer src="data/map-codes.js"></script>
+<script defer src="data/world-map-v00163.js"></script>
+<script defer src="data/locations.js"></script>
+<script defer src="data/content.js"></script>
+<script defer src="data/economy.js"></script>
+<script defer src="data/unlocks.js"></script>
+<script defer src="data/skill-endgame.js"></script>
+<script defer src="data/maps/home.js"></script>
+<script defer src="data/maps/smithy.js"></script>
+<script defer src="data/maps/bank.js"></script>
+<script defer src="data/maps/shop.js"></script>
+<script defer src="data/maps/village.js"></script>
+<script defer src="data/maps/village2.js"></script>
+<script defer src="data/maps/entrance.js"></script>
+<script defer src="data/maps/mushroomforest.js"></script>
+<script defer src="data/maps/cave.js"></script>
+<script defer src="data/maps/witchyard.js"></script>
+<script defer src="data/maps/darkforest.js"></script>
+<script defer src="data/maps/spiderlair.js"></script>
+<script defer src="data/maps/atenaria-expansion.js"></script>
+<script defer src="data/maps/altaria-mornaqua-expansion.js"></script>
+<script defer src="data/maps/calindra-solacia-expansion.js"></script>
+<script defer src="data/maps/blaziria-necrovicia-expansion.js"></script>
+<script defer src="data/maps/invernia-expansion.js"></script>
+<script defer src="js/event-bus.js"></script>
+<script defer src="js/reward-presentation.js"></script>
+<script defer src="js/state-save.js"></script>
+<script defer src="js/world.js"></script>
+<script defer src="js/entities.js"></script>
+<script defer src="js/renderer-layers.js"></script>
+<script defer src="js/input.js"></script>
+<script defer src="js/inventory.js"></script>
+<script defer src="js/quest.js"></script>
+<script defer src="js/gathering.js"></script>
+<script defer src="js/crafting.js"></script>
+<script defer src="js/battle.js"></script>
+<script defer src="js/ui.js"></script>
+<script defer src="js/item-icons.js"></script>
+<script defer src="js/terrain-autotile.js"></script>
+<script defer src="js/terrain-visuals.js"></script>
+<script defer src="js/world-decor.js"></script>
+<script defer src="js/region-props.js"></script>
+<script defer src="js/region-identity.js"></script>
+<script defer src="js/ambient-animation.js"></script>
+<script defer src="js/camera-polish.js"></script>
+<script defer src="js/shadow-system.js"></script>
+<script defer src="js/building-visuals.js"></script>
+<script defer src="js/render-cache.js"></script>
+<script defer src="js/sprites.js"></script>
+<script defer src="js/floating-text.js"></script>
+<script defer src="js/battle-visuals.js"></script>
+<script defer src="js/battle-v47.js"></script>
+<script defer src="js/vegetation-visuals.js"></script>
+<script defer src="js/interaction-visuals.js"></script>
+<script defer src="js/water-visuals.js"></script>
+<script defer src="js/lighting.js"></script>
+<script defer src="js/gathering-vfx.js"></script>
+<script defer src="js/main.js"></script>
+<script defer src="js/pwa.js"></script>
+</body>
+</html>
